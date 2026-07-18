@@ -4,7 +4,7 @@ const KC_CONTACT_ENDPOINT = `https://formsubmit.co/${KC_FORMSUBMIT_TOKEN}`;
 const KC_CONTACT_AJAX_ENDPOINT = `https://formsubmit.co/ajax/${KC_FORMSUBMIT_TOKEN}`;
 const KC_CONTACT_SUCCESS_PATH = "/contact/thanks/";
 const KC_LOGO_PATH = "/assets/images/branding/KarunaCommunitas_Logo.png";
-const KC_FAVICON_PATH = KC_LOGO_PATH;
+const KC_FAVICON_PATH = "/assets/images/branding/favicon.jpg";
 
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
@@ -109,7 +109,7 @@ function ensureSiteFavicon() {
     document.head.appendChild(favicon);
   }
 
-  favicon.type = "image/png";
+  favicon.type = "image/jpeg";
   favicon.href = KC_FAVICON_PATH;
 }
 
