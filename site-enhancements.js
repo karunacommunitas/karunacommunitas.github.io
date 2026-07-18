@@ -3,6 +3,8 @@ const KC_FORMSUBMIT_TOKEN = "8319f8c5d70d6fc0cf48ca477f50f6fc";
 const KC_CONTACT_ENDPOINT = `https://formsubmit.co/${KC_FORMSUBMIT_TOKEN}`;
 const KC_CONTACT_AJAX_ENDPOINT = `https://formsubmit.co/ajax/${KC_FORMSUBMIT_TOKEN}`;
 const KC_CONTACT_SUCCESS_PATH = "/contact/thanks/";
+const KC_LOGO_PATH = "/assets/images/branding/KarunaCommunitas_Logo.png";
+const KC_FAVICON_PATH = KC_LOGO_PATH;
 
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
@@ -18,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
   ]);
 
   const body = document.body;
+
+  ensureSiteFavicon();
   const pageSections = Array.from(document.querySelectorAll(".page-section"));
   const footerSections = Array.from(document.querySelectorAll("#footer-sections .page-section"));
 
@@ -96,6 +100,19 @@ document.addEventListener("DOMContentLoaded", () => {
   enhanceStaticContactForms();
 });
 
+function ensureSiteFavicon() {
+  let favicon = document.querySelector('link[rel="icon"]');
+
+  if (!favicon) {
+    favicon = document.createElement("link");
+    favicon.rel = "icon";
+    document.head.appendChild(favicon);
+  }
+
+  favicon.type = "image/png";
+  favicon.href = KC_FAVICON_PATH;
+}
+
 function normalizeBodyClasses(body) {
   const preserved = Array.from(body.classList).filter((className) => {
     return className.startsWith("collection-") || className === "homepage";
@@ -146,12 +163,8 @@ function buildSiteShell({ currentPath, shellClass = "", mainContent }) {
   shell.innerHTML = `
     <header class="kc-site-header">
       <div class="kc-site-header__inner">
-        <a class="kc-site-brand" href="/">
-          <span class="kc-site-brand__mark"></span>
-          <span class="kc-site-brand__text">
-            <strong>Karuna</strong>
-            <span>Communitas</span>
-          </span>
+        <a class="kc-site-brand" href="/" aria-label="Karuna Communitas home">
+          <img class="kc-site-brand__logo" src="${KC_LOGO_PATH}" alt="Karuna Communitas">
         </a>
         <nav class="kc-site-nav" aria-label="Primary">
           ${getPrimaryNavMarkup(currentPath)}
@@ -193,6 +206,7 @@ function buildSiteShell({ currentPath, shellClass = "", mainContent }) {
 
 function getPrimaryNavMarkup(currentPath) {
   const items = [
+    { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/team", label: "Team" },
     { href: "/practitioners", label: "Practitioners" },
@@ -304,12 +318,8 @@ function renderHomePage() {
   shell.innerHTML = `
     <header class="kc-site-header">
       <div class="kc-site-header__inner">
-        <a class="kc-site-brand" href="/">
-          <span class="kc-site-brand__mark"></span>
-          <span class="kc-site-brand__text">
-            <strong>Karuna</strong>
-            <span>Communitas</span>
-          </span>
+        <a class="kc-site-brand" href="/" aria-label="Karuna Communitas home">
+          <img class="kc-site-brand__logo" src="${KC_LOGO_PATH}" alt="Karuna Communitas">
         </a>
         <nav class="kc-site-nav" aria-label="Primary">
           ${getPrimaryNavMarkup("/")}
@@ -455,12 +465,8 @@ function renderContactPage() {
   shell.innerHTML = `
     <header class="kc-site-header">
       <div class="kc-site-header__inner">
-        <a class="kc-site-brand" href="/">
-          <span class="kc-site-brand__mark"></span>
-          <span class="kc-site-brand__text">
-            <strong>Karuna</strong>
-            <span>Communitas</span>
-          </span>
+        <a class="kc-site-brand" href="/" aria-label="Karuna Communitas home">
+          <img class="kc-site-brand__logo" src="${KC_LOGO_PATH}" alt="Karuna Communitas">
         </a>
         <nav class="kc-site-nav" aria-label="Primary">
           ${getPrimaryNavMarkup("/contact")}

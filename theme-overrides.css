@@ -681,30 +681,13 @@ body.kc-home-rebuilt::before {
 .kc-site-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.9rem;
   text-decoration: none;
 }
 
-.kc-site-brand__mark {
-  width: 2.6rem;
-  height: 2.6rem;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, #f8f1df, transparent 34%),
-    linear-gradient(145deg, #78886e, #51624d);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-}
-
-.kc-site-brand__text {
-  display: grid;
-  gap: 0.05rem;
-}
-
-.kc-site-brand__text strong,
-.kc-site-brand__text span {
-  font-family: "Fraunces", Georgia, serif;
-  font-size: 1.15rem;
-  line-height: 1;
+.kc-site-brand__logo {
+  display: block;
+  width: clamp(11rem, 18vw, 15rem);
+  height: auto;
 }
 
 .kc-site-nav {
