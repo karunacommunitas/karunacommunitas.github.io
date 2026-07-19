@@ -671,17 +671,8 @@ body.kc-home-rebuilt::before {
   box-shadow: 0 12px 28px rgba(25, 39, 33, 0.12);
 }
 
-.kc-site-header__inner,
-.kc-home-hero,
-.kc-home-story,
-.kc-home-paths,
-.kc-home-contact,
-.kc-site-footer {
-  display: grid;
-  gap: 1.5rem;
-}
-
 .kc-site-header__inner {
+  display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 1.5rem;
@@ -1091,6 +1082,14 @@ body.kc-home-rebuilt::before {
   background: #627257;
   color: #f9f5eb;
   border-color: #627257;
+}
+
+.kc-home-hero,
+.kc-home-story,
+.kc-home-paths,
+.kc-home-contact {
+  display: grid;
+  gap: 1.5rem;
 }
 
 .kc-home-hero__panel,
