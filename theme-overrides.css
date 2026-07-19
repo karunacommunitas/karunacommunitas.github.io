@@ -1321,10 +1321,28 @@ body.kc-home-rebuilt::before {
   }
 
   .kc-site-header {
-    margin-bottom: 1rem;
-    padding: 0.65rem 0 0.85rem;
-    border-radius: 24px;
-    background-position: 62% center;
+    margin-bottom: 0.9rem;
+    padding: 0.45rem 0 0.6rem;
+    border-radius: 22px;
+    background-position: 60% center;
+  }
+
+  .kc-site-header__inner {
+    gap: 0.7rem;
+  }
+
+  .kc-site-brand__logo {
+    width: clamp(7.75rem, 34vw, 9.5rem);
+  }
+
+  .kc-site-nav {
+    gap: 0.45rem 0.7rem;
+  }
+
+  .kc-site-nav a {
+    padding: 0.2rem 0;
+    font-size: 0.94rem;
+    line-height: 1.25;
   }
 
   .kc-home-hero,
@@ -1334,12 +1352,37 @@ body.kc-home-rebuilt::before {
   .kc-page-hero,
   .kc-page-section,
   .kc-site-footer {
-    padding: 1.1rem;
+    padding: 1.05rem;
     border-radius: 24px;
   }
 
+  .kc-home-hero__content {
+    padding: 0.9rem;
+  }
+
+  .kc-home-kicker {
+    margin-bottom: 0.8rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+
   .kc-home-hero h1 {
-    font-size: clamp(3rem, 16vw, 4.5rem) !important;
+    max-width: 100%;
+    font-size: clamp(2.35rem, 12vw, 3.35rem) !important;
+    line-height: 0.96;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .kc-home-lead {
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .kc-home-actions {
+    gap: 0.7rem;
+    margin-top: 1.2rem;
   }
 
   .kc-page-hero__content,
