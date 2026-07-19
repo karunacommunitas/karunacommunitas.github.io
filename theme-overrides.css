@@ -1396,4 +1396,23 @@ body.kc-home-rebuilt::before {
     padding: 1.1rem;
     border-radius: 20px;
   }
+
+  .kc-profile-card,
+  .kc-practitioner-card,
+  .kc-store-card {
+    gap: 0.75rem;
+  }
+
+  .kc-profile-card img,
+  .kc-practitioner-card img,
+  .kc-store-card img {
+    min-height: 12rem;
+    height: auto;
+  }
+
+  .kc-profile-card__body,
+  .kc-practitioner-card__body,
+  .kc-store-card__body {
+    position: static;
+  }
 }
