@@ -692,20 +692,64 @@ function renderPreparationTipsPage() {
       <section class="kc-page-section">
         <article class="kc-rich-copy">
           <p>Preparation is not only practical. It is also emotional, relational, and reflective. The aim is not to control what happens, but to approach the experience with care, honesty, and enough support around you.</p>
+          <h2>Cultivate stillness</h2>
+          <p>Meditation and breathwork can help you stay present and connected to your senses rather than getting lost in mental chatter. Even a simple daily practice of slowing down, noticing the breath, and returning attention to the body can make it easier to meet the experience with steadiness.</p>
+          <h2>Prepare in relationship, not only alone</h2>
+          <p>If the work is happening in a group context, it can be helpful for the group to meet online beforehand and practise embodied listening together. This can build familiarity, self-awareness, and empathy within the wider community container before meeting in person.</p>
+          <h2>Be mindful of what enters your consciousness</h2>
+          <p>In the lead-up to an experience, it can help to reduce the amount of overstimulating, stressful, or violent material you take in. A gentle digital detox, stepping back from doom-scrolling, and choosing activities that promote openness rather than stress can all support a more grounded state of mind.</p>
           <h2>Clarify your intention</h2>
           <p>Ask yourself why you are approaching this experience now. You may be hoping to understand a pattern, reconnect with yourself, process something difficult, or simply enter the experience with more openness and care. A clear intention can help you feel anchored without turning the experience into a test you have to pass.</p>
+          <h2>Hold intention and expectation in balance</h2>
+          <p>We can have the loveliest intentions in the world, but if we expect them to unfold in a very specific way or within a specific timeframe, disappointment can quickly follow. Sometimes what we long for does happen, just not in the form we imagined. Holding intention a little more loosely can support the process and leave room for the experience to unfold in its own way.</p>
           <h2>Be honest about your current state</h2>
           <p>Take stock of how you have been recently. Stress, exhaustion, emotional instability, major life disruption, or limited support can all affect how prepared you feel. Honesty here is not about judging yourself. It is about noticing what kind of support, pacing, or postponement might actually be wise.</p>
           <h2>Consider set and setting</h2>
           <p>Preparation includes the inner and outer environment. Your mindset, the physical setting, the people around you, and the degree of trust and safety available all matter. If the wider context feels pressured, chaotic, or unsafe, that is important information.</p>
+          <h2>Practice positive self-talk and self-compassion</h2>
+          <p>It can be helpful to notice self-critical parts with warmth rather than judgment. Some people find the Internal Family Systems model useful here, especially for understanding how protective parts may once have served a purpose but no longer need to lead. This <a href="https://www.youtube.com/watch?v=6MesvXKa8Rg">IFS introduction video</a> may be a supportive starting point.</p>
+          <h2>Practise feeling emotions in the body</h2>
+          <p>Before a journey, it can be useful to build familiarity with how emotions actually show up in your body. Practices such as Felt Sense work or <a href="https://www.tarabrach.com/rain/">RAIN meditation</a> can help. You might gently bring a challenging emotion to mind and ask: what does this feel like, and where do I notice it in the body? Try greeting it with curiosity rather than resistance. Framing it as “something in me feels...” can create a little space around the emotion. You might notice whether it has a shape, colour, temperature, or movement, and then offer it some warmth and compassion. Often, the relationship to the feeling begins to shift.</p>
           <h2>Plan your support</h2>
           <p>Think ahead about who you can speak to before and after the experience. This might be a trusted friend, therapist, integration practitioner, or other grounded support person. Knowing you will not be left alone with what emerges can make a real difference.</p>
+          <h2>Create a dedicated space</h2>
+          <p>Some people find it meaningful to create a small altar or dedicated space at home with objects of personal significance, such as photos of loved ones, meaningful symbols, or items from nature. This can become a simple physical expression of your intention and a place to return to before or after the experience.</p>
+          <h2>Connect with nature</h2>
+          <p>Nature can be a powerful support for preparation. Mindful walking, forest bathing, or even a flower bath made with leaves and flowers gathered from your garden or local area can help you slow down and feel more connected. If helpful, you could explore this <a href="https://www.nationaltrust.org.uk/discover/nature/trees-plants/a-beginners-guide-to-forest-bathing">beginner’s guide to forest bathing</a> or this piece on <a href="https://thatflowerfeeling.org/flower-baths-a-luxurious-self-care-ritual-you-need-to-try/">flower baths as a self-care ritual</a>.</p>
+          <h2>Use breathwork to cultivate openness</h2>
+          <p>Practising breathing techniques in the run-up to a journey can help create a calmer, more open frame of mind. Some people find equal breathing especially helpful for centring themselves, while others benefit from a slow, focused exhale to release tension and soften the body.</p>
+          <h2>Learn from manageable discomfort</h2>
+          <p>Practices such as cold water immersion can help some people prepare by building familiarity with intensity and teaching the body that discomfort can be met without panic. This is less about pushing yourself and more about learning how to stay present and steady when things feel challenging.</p>
+          <h2>Keep a preparation journal</h2>
+          <p>A dedicated notebook for the period leading up to a ceremony can help you notice patterns, questions, hopes, and feelings as they arise. The same journal can then support integration afterwards, helping you make sense of insights and return to them over the coming months or even years.</p>
+          <h2>Spend time with people who nourish you</h2>
+          <p>Leading up to an experience, prioritise time with people who help you feel happy, supported, and energised. Where possible, reduce time around dynamics that leave you feeling drained, conflicted, or emotionally contracted.</p>
+          <h2>Stay close to integrity</h2>
+          <p>Preparation can also include the relational and ethical tone of everyday life. Honest communication, openness, and stepping back from behaviours that pull you out of integrity, such as dishonesty or gossip, can help create a stronger sense of inner alignment.</p>
           <h2>Reduce unnecessary pressure</h2>
           <p>It can help to soften expectations of breakthrough, certainty, or transformation. Preparation is often stronger when it is rooted in curiosity rather than performance. You do not need to force a life-changing outcome for the experience to be meaningful.</p>
+          <h2>Support the body through food and rhythm</h2>
+          <p>It can be wise to consider contraindications and to eat in a way that leaves you feeling clear, steady, and well-resourced before taking the medicine. Emerging research also suggests that gut health may play a meaningful role in how people respond to psychedelic experiences, so a healthy diet may support the wider process.</p>
+          <h2>Reduce overstimulation</h2>
+          <p>Some people find it helpful to bring more restraint to the period before a journey, including around sexual activity, heavy media consumption, and highly stimulating social interactions. The intention is not moral purity, but creating more internal quiet and coherence.</p>
+          <h2>Immediately prior to the ceremony</h2>
+          <p>Some participants find it helpful to gently move the body and settle the nervous system just before the ceremony begins. Breathwork, chanting, or simple meditative movement practices such as qigong can help ease the transition into stillness before lying down.</p>
+          <h2>Bring gratitude into the ceremony</h2>
+          <p>It can be meaningful to reflect beforehand on what, and who, you may want to offer gratitude to before the ceremony begins. Some people like to weave this into the space through a short poem, a few spoken words, or a simple private reflection. Gratitude can help soften the heart and clarify the relational spirit in which the journey is being approached.</p>
+          <h2>Make space for conversations about ancestors</h2>
+          <p>Many journeys involve a sense of connection with ancestors or loved ones who have died. Speaking about this beforehand can be helpful, especially for someone who has never journeyed before and may find the idea unfamiliar or strange. Naming the possibility can reduce shock and support a sense of openness if this kind of material arises.</p>
+          <h2>Remember that the medicine may not feel random</h2>
+          <p>Nervous participants sometimes find it calming to consider that the medicine has a kind of benign agency and may work in relationship with the preconscious or unconscious mind in ways that are ultimately in their best interests. That does not mean every moment feels easy, but it can help people stay in relationship with challenging material rather than feeling immediately threatened by it.</p>
+          <h2>Screen physical and mental health carefully</h2>
+          <p>Preparation should include thoughtful screening of both physical and psychological health. This may include blood pressure concerns, epilepsy, injuries, medications, or other physical issues that need to be managed, as well as trauma history, suicidality, psychosis, personality disorder, or other factors that may increase risk. A participant should have a reasonably stable level of day-to-day functioning before proceeding.</p>
+          <h2>Check possible medicine interactions</h2>
+          <p>It is important to review possible interactions between any medicine being used and existing medications or substances. A drug interaction checker such as Medscape may be a useful starting point, and where appropriate this should be discussed with a suitably qualified medical professional rather than guessed.</p>
           <h2>Prepare practically</h2>
           <p>Attend to sleep, food, hydration, transport, comfort, and the time you will need afterwards. Practical details are easy to dismiss, but they often shape how supported and resourced you feel. Leaving space after the experience is part of the preparation, not an optional extra.</p>
           <h2>Know your boundaries</h2>
           <p>Preparation also includes recognising when something does not feel right. If you feel pressured, unsure, unwell, or unsupported, it may be better to pause and seek advice. Respecting your limits is part of creating safety.</p>
+          <h2>Discuss touch and consent clearly</h2>
+          <p>If touch may be part of the holding process, it is important to discuss consent explicitly beforehand. Clear pre-consent, including around the gender of the space holder where relevant, can reduce harm, protect both participant and space holder, and help create a safer container for the work.</p>
           <p>Careful preparation is not separate from the journey. It is part of the work itself.</p>
         </article>
       </section>

@@ -853,7 +853,16 @@ body.kc-home-rebuilt::before {
 
 .kc-rich-copy a {
   color: var(--kc-accent);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18rem;
+  text-decoration-color: color-mix(in srgb, var(--kc-accent) 70%, white 30%);
+}
+
+.kc-rich-copy a:hover,
+.kc-rich-copy a:focus-visible {
+  color: var(--kc-ink);
+  text-decoration-color: var(--kc-accent);
 }
 
 .kc-rich-copy ul,
