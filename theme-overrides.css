@@ -657,9 +657,18 @@ body.kc-home-rebuilt::before {
   top: 0;
   z-index: 20;
   margin-bottom: 2rem;
-  padding: 0.35rem 0 0.75rem;
-  background: linear-gradient(180deg, rgba(247, 241, 231, 0.92), rgba(247, 241, 231, 0.62), transparent);
-  backdrop-filter: blur(12px);
+  padding: 0.7rem 0 0.95rem;
+  background:
+    linear-gradient(180deg, rgba(12, 23, 28, 0.54), rgba(12, 23, 28, 0.24), rgba(247, 241, 231, 0.05)),
+    linear-gradient(90deg, rgba(247, 241, 231, 0.1), rgba(247, 241, 231, 0.02)),
+    url("/assets/images/branding/header-background-lakeside-fire-circle.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(248, 244, 235, 0.1);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(25, 39, 33, 0.12);
 }
 
 .kc-site-header__inner,
@@ -705,10 +714,25 @@ body.kc-home-rebuilt::before {
 }
 
 .kc-site-nav a {
-  padding: 0.55rem 0.9rem;
-  border: 1px solid rgba(39, 49, 39, 0.08);
-  border-radius: 999px;
-  background: rgba(252, 250, 244, 0.75);
+  padding: 0.45rem 0.25rem;
+  border: 0;
+  border-radius: 0;
+  color: rgba(250, 247, 240, 0.92);
+  background: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.kc-site-nav a:hover,
+.kc-site-nav a:focus-visible {
+  color: #fffdf9;
+  opacity: 1;
+}
+
+.kc-site-nav a[aria-current="page"] {
+  color: #fffdf9;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28rem;
 }
 
 .kc-home-main {
@@ -1288,6 +1312,9 @@ body.kc-home-rebuilt::before {
 
   .kc-site-header {
     margin-bottom: 1rem;
+    padding: 0.65rem 0 0.85rem;
+    border-radius: 24px;
+    background-position: 62% center;
   }
 
   .kc-home-hero,
