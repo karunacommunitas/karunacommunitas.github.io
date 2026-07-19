@@ -1368,7 +1368,7 @@ body.kc-home-rebuilt::before {
 
   .kc-home-hero h1 {
     max-width: 100%;
-    font-size: clamp(2.35rem, 12vw, 3.35rem) !important;
+    font-size: clamp(2.05rem, 10.6vw, 3rem) !important;
     line-height: 0.96;
     overflow-wrap: anywhere;
     word-break: normal;
