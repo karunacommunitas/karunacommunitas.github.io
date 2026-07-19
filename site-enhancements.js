@@ -394,14 +394,13 @@ function renderHomePage() {
           <h2>${contactTitle}</h2>
           <p>${contactCopy}</p>
           <div class="kc-contact-notes">
-            <p><strong>Best for:</strong> partnerships, enquiries, and community connection.</p>
-            <p><strong>Response style:</strong> thoughtful, human, and unhurried.</p>
+            <p><strong>Email:</strong> <a class="kc-contact-email-link" href="mailto:${KC_CONTACT_EMAIL}?subject=Hello">${KC_CONTACT_EMAIL}</a></p>
           </div>
         </div>
         <div class="kc-home-contact__form">
           ${getStaticContactFormMarkup({
-            eyebrow: "Send a note",
-            title: "Reach out directly from the homepage.",
+            eyebrow: "Write to us",
+            title: "Send a message",
             compact: true,
           })}
         </div>
@@ -481,7 +480,6 @@ function renderContactPage() {
           <p>${copy}</p>
           <div class="kc-contact-notes">
             <p><strong>Email:</strong> <a class="kc-contact-email-link" href="mailto:${KC_CONTACT_EMAIL}?subject=Hello">${KC_CONTACT_EMAIL}</a></p>
-            <p><strong>Best for:</strong> collaborations, practitioner enquiries, community questions, and thoughtful introductions.</p>
           </div>
         </div>
         <div class="kc-home-contact__form">
