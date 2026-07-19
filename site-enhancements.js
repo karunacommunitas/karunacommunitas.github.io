@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ["/resources", "resources"],
     ["/resources/preparation-tips", "preparation-tips"],
     ["/resources/integration-tips", "integration-tips"],
+    ["/resources/grounding-exercises", "grounding-exercises"],
     ["/team", "team"],
     ["/practitioners", "practitioners"],
     ["/contact", "contact"],
@@ -86,6 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (body.classList.contains("kc-page-integration-tips")) {
     renderIntegrationTipsPage();
+  }
+
+  if (body.classList.contains("kc-page-grounding-exercises")) {
+    renderGroundingExercisesPage();
   }
 
   if (body.classList.contains("kc-page-team")) {
@@ -652,6 +657,10 @@ function renderResourcesPage() {
             <h2>Integration Tips</h2>
             <p>Support for reflection, pacing, embodiment, and turning insight into meaningful change in everyday life.</p>
           </a>
+          <a class="kc-path-card" href="/resources/grounding-exercises">
+            <h2>Grounding Exercises</h2>
+            <p>Simple practices for returning to the body, the senses, and the present moment when things feel intense or unsteady.</p>
+          </a>
         </div>
       </section>
       <section class="kc-page-section">
@@ -849,6 +858,68 @@ function renderIntegrationTipsPage() {
   });
 
   replaceWithShell(shell, "kc-integration-rebuilt");
+}
+
+function renderGroundingExercisesPage() {
+  if (document.querySelector(".kc-grounding-shell")) {
+    return;
+  }
+
+  const shell = buildSiteShell({
+    currentPath: "/resources",
+    shellClass: "kc-grounding-shell",
+    mainContent: `
+      ${getPageHeroMarkup({
+        eyebrow: "Resources",
+        title: "Grounding Exercises",
+        contentMarkup: `
+          <p>Grounding practices can help bring attention back to the body, the senses, and the immediate environment when emotions, memories, or stimulation feel too strong.</p>
+          <div class="kc-inline-actions">
+            <a class="kc-home-button" href="/resources">Back to resources</a>
+          </div>
+        `,
+      })}
+      <section class="kc-page-section">
+        <article class="kc-rich-copy">
+          <p>Not every grounding practice works for every person. The aim is not to force calm, but to find a few simple ways of reorienting to the present when things feel overwhelming, floaty, shut down, or emotionally intense.</p>
+          <h2>Use the senses</h2>
+          <p>Look around and name a few things you can see, hear, feel, or smell. You might notice the weight of your body on a chair, the texture of clothing on your skin, or the sounds in the room around you. Sensory orientation can gently remind the nervous system that you are here, now.</p>
+          <h2>Feel your feet</h2>
+          <p>Press your feet into the floor and notice the contact points. If helpful, stand up and slowly shift your weight from one foot to the other. Some people find it especially regulating to stand barefoot on grass, soil, or stone and feel the ground beneath them directly.</p>
+          <h2>Body scan</h2>
+          <p>A body scan can support body awareness and relaxation, helping to centre you in the present moment. You might close your eyes and bring attention to different parts of the body, starting at the toes and moving upward. Notice sensations, tension, numbness, or discomfort without needing to fix anything immediately, and allow any held tension to soften where it can.</p>
+          <h2>Slow the exhale</h2>
+          <p>Without forcing the breath, try allowing the out-breath to lengthen slightly. A slow, focused exhale can help signal safety to the body and soften activation. The point is not perfect technique, just a little more steadiness and space.</p>
+          <h2>Hold something supportive</h2>
+          <p>A blanket, cushion, warm mug, smooth stone, or meaningful object can help anchor attention in the physical world. Simple contact with something solid and familiar can sometimes be more regulating than trying to think your way out of distress.</p>
+          <h2>Move gently</h2>
+          <p>Grounding does not always mean becoming still. Walking, stretching, shaking out the hands, or making slow circular movements with the shoulders can help bring attention back into the body and discharge some intensity.</p>
+          <h2>Go outside if you can</h2>
+          <p>Fresh air, trees, open sky, or the feeling of your feet in the sea can all be grounding. Some people find it helpful to hug a tree, sit on the earth, or simply look at something living and steady in the natural world.</p>
+          <h2>Use visualisation</h2>
+          <p>Visualisation can sometimes evoke a sense of calm and safety when the external world feels too much. You might close your eyes and imagine yourself in a peaceful, grounding environment such as a forest, beach, or mountain. Let yourself picture the supportive elements of that place around you and notice whether their steadiness helps you feel a little more anchored.</p>
+          <h2>Name what is happening kindly</h2>
+          <p>Sometimes grounding begins with simple language: “Something in me feels overwhelmed,” or “I am noticing fear in my body.” Naming experience gently can reduce the sense of being engulfed by it and create a little more room to stay present.</p>
+          <h2>Keep it simple</h2>
+          <p>In moments of intensity, the most effective grounding practice is often the simplest one. Rather than reaching for the perfect method, it can help to return to one or two practices you already know feel accessible and supportive.</p>
+          <p>Grounding is not about getting rid of experience. It is about helping yourself stay connected enough to move through it with more support.</p>
+        </article>
+      </section>
+      <section class="kc-page-section">
+        <div class="kc-page-section__intro">
+          <p class="kc-eyebrow">Support</p>
+          <h2>If grounding feels hard, more support may be needed.</h2>
+          <p>Sometimes intensity, dissociation, or distress can be difficult to manage alone. Reaching out for relational or professional support can be part of the grounding process too.</p>
+          <div class="kc-inline-actions">
+            <a class="kc-home-button kc-home-button--solid" href="/practitioners">Find a practitioner</a>
+            <a class="kc-home-button" href="/resources/integration-tips">Explore integration tips</a>
+          </div>
+        </div>
+      </section>
+    `,
+  });
+
+  replaceWithShell(shell, "kc-grounding-rebuilt");
 }
 
 function renderTeamPage() {
