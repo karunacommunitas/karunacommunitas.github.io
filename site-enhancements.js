@@ -565,7 +565,6 @@ function renderArticlesPage() {
       const titleLink = article.querySelector(".blog-title a");
       const title = getTextContent(titleLink);
       const href = titleLink?.getAttribute("href") || "#";
-      const author = getTextContent(article.querySelector(".blog-author"));
       const date = getTextContent(article.querySelector(".blog-date"));
       const excerpt = Array.from(article.querySelectorAll(".blog-body-wrapper p"))
         .map((node) => getTextContent(node))
@@ -579,7 +578,7 @@ function renderArticlesPage() {
 
       return `
         <article class="kc-article-card">
-          <p class="kc-article-meta">${escapeHtml(author)}${author && date ? " · " : ""}${escapeHtml(date)}</p>
+          <p class="kc-article-meta">${escapeHtml(date)}</p>
           <h2><a href="${escapeHtml(href)}">${escapeHtml(title)}</a></h2>
           <p>${escapeHtml(excerpt)}</p>
           <a class="kc-text-link" href="${escapeHtml(href)}">Read article</a>
@@ -788,7 +787,6 @@ function renderArticleDetailPage() {
   }
 
   const title = getTextContent(wrapper.querySelector(".entry-title")) || "Article";
-  const author = getTextContent(wrapper.querySelector(".blog-author-name, .author-name"));
   const date = getTextContent(wrapper.querySelector(".blog-meta-item--date"));
   const bodyMarkup = getBodyMarkup(wrapper);
   const heroImage = getBodyImage(wrapper);
@@ -804,7 +802,7 @@ function renderArticleDetailPage() {
         heroClass: "kc-detail-hero",
         split: true,
         contentMarkup: `
-          <p class="kc-detail-meta">${escapeHtml(author)}${author && date ? " · " : ""}${escapeHtml(date)}</p>
+          <p class="kc-detail-meta">${escapeHtml(date)}</p>
           <p>Long-form reflections from the Karuna Communitas network on healing, communitas, and grounded psychedelic care.</p>
         `,
         mediaMarkup: heroImage ? `<img src="${escapeHtml(heroImage)}" alt="${escapeHtml(title)}">` : "",
