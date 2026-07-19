@@ -693,6 +693,7 @@ function renderPreparationTipsPage() {
         title: "Preparation Tips",
         contentMarkup: `
           <p>Creating the conditions for safety, clarity, and intention before an experience can be just as important as the experience itself.</p>
+          <p>These tips and techniques have been collated from the Karuna Communitas Network.</p>
           <div class="kc-inline-actions">
             <a class="kc-home-button" href="/resources">Back to resources</a>
           </div>
@@ -793,6 +794,7 @@ function renderIntegrationTipsPage() {
         title: "Integration Tips",
         contentMarkup: `
           <p>Integration is the process of making space for reflection, meaning, and grounded next steps after an experience.</p>
+          <p>These tips and techniques have been collated from the Karuna Communitas Network.</p>
           <div class="kc-inline-actions">
             <a class="kc-home-button" href="/resources">Back to resources</a>
           </div>
@@ -874,6 +876,7 @@ function renderGroundingExercisesPage() {
         title: "Grounding Exercises",
         contentMarkup: `
           <p>Grounding practices can help bring attention back to the body, the senses, and the immediate environment when emotions, memories, or stimulation feel too strong.</p>
+          <p>These tips and techniques have been collated from the Karuna Communitas Network.</p>
           <div class="kc-inline-actions">
             <a class="kc-home-button" href="/resources">Back to resources</a>
           </div>
