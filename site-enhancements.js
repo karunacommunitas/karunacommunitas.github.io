@@ -792,22 +792,46 @@ function renderIntegrationTipsPage() {
       <section class="kc-page-section">
         <article class="kc-rich-copy">
           <p>Integration does not need to be rushed. Sometimes the most helpful thing is to create enough spaciousness for meaning to unfold gradually, rather than trying to pin everything down too quickly.</p>
+          <h2>Return gently to the experience</h2>
+          <p>When and where it feels possible, it can help to return to a safe, comfortable space after the journey and listen again to the playlist or music that accompanied it. Sitting quietly, closing your eyes, and letting yourself re-enter aspects of the experience can sometimes help deepen memory and understanding. Keeping a journal nearby can help you catch what comes.</p>
           <h2>Give yourself time</h2>
-          <p>If possible, reduce stimulation and allow some time for rest. Gentle pacing can help you notice what remains meaningful after the intensity has passed. Not every insight needs to become action immediately.</p>
+          <p>If possible, reduce stimulation and allow some time for rest. Gentle pacing can help you notice what remains meaningful after the intensity has passed. Not every insight needs to become action immediately. Sometimes integration asks for periods of doing very little except being present.</p>
+          <h2>Spend time in nature and gentle movement</h2>
+          <p>Time outside and light physical activity can be deeply supportive after an intense experience. Walking, resting under trees, or moving slowly through familiar natural places can help the body settle and give the mind room to process without force.</p>
           <h2>Record what feels important</h2>
           <p>Journalling, voice notes, drawing, or writing down a few phrases can help preserve what feels alive before it becomes harder to recall. You do not need to capture everything. A few honest fragments are often enough.</p>
+          <h2>Use art when words are not enough</h2>
+          <p>Art can be a powerful integration tool, especially when what arose feels difficult to explain. Drawing the journey soon afterwards, perhaps in the form of a mandala or simple image, can help articulate symbols, visions, feelings, or insights that are hard to put into language.</p>
           <h2>Stay curious, not forceful</h2>
           <p>Some experiences feel clear straight away. Others take longer to understand. It can help to stay close to the questions that emerged without demanding instant certainty. Meaning often develops in layers.</p>
+          <h2>Ground through simple sensory contact</h2>
+          <p>Grounding can be surprisingly physical and direct. Some people find it helpful to put their feet in the sea, stand barefoot in the grass, or even hug a tree. These simple acts can help reconnect the system with the body, the earth, and the immediate present.</p>
           <h2>Talk to someone you trust</h2>
           <p>Sharing with a trusted friend, therapist, or integration practitioner can help you feel less alone and can support you in making sense of what stands out. Relational reflection is often part of how integration deepens.</p>
+          <h2>Stay connected with safe people</h2>
+          <p>It can help to spend time with trusted friends or relatives who understand and respect your relationship with medicines. Feeling able to speak honestly, without having to defend or minimise your experience, can make integration feel more supported and less isolating.</p>
           <h2>Support the body as well as the mind</h2>
-          <p>Sleep, nourishing food, walking, breath, movement, and steady routines can all help with integration. The nervous system may need as much care as the thinking mind. Gentle embodiment practices can be especially supportive.</p>
+          <p>Sleep, nourishing food, walking, breath, movement, and steady routines can all help with integration. The nervous system may need as much care as the thinking mind. Gentle embodiment practices can be especially supportive. Swimming, cold water, and sauna or plunge pool experiences can also help some people regulate, reconnect, and metabolise intensity through the body.</p>
+          <h2>Let the body continue processing</h2>
+          <p>Breathwork, yoga, and meditation can support the preconscious and unconscious processing that may continue after the journey, especially where trauma has been touched. These practices can help material keep moving without needing to force interpretation. At the same time, be mindful of how easy it can be to slip back into familiar patterns once daily life resumes.</p>
           <h2>Look for one small next step</h2>
-          <p>Rather than trying to transform everything at once, ask what one grounded change might look like. This could be a conversation, a boundary, a new practice, or a small shift in how you care for yourself day to day.</p>
+          <p>Rather than trying to transform everything at once, ask what one grounded change might look like. This could be a conversation, a boundary, a new practice, or a small shift in how you care for yourself day to day. Consider how the insights you received might be woven into life in ways that are meaningful and sustainable.</p>
+          <h2>Stay in touch with the group if there is one</h2>
+          <p>If your experience happened in a group setting, consider staying connected with the people you journeyed with. Mutual reflection over the following weeks and months can support accountability, compassion, and a deeper sense that the work continues in community rather than only in private.</p>
           <h2>Be gentle with intensity</h2>
           <p>Difficult or tender material can continue to surface afterwards. If the experience leaves you feeling disoriented or emotionally raw, that does not mean you have done anything wrong. It may simply mean more support, rest, or containment is needed.</p>
+          <h2>Prepare for the crash</h2>
+          <p>After a profound or life-changing experience, it is common to feel elevated for days or even weeks. Then ordinary life returns: work, bills, responsibilities, habits, and the general pace of modern living. That contrast can feel jarring or disheartening. The aim is not to cling to the peak forever. The aim is to understand what the experience showed you and how it might be lived, however imperfectly, in ordinary life.</p>
           <h2>Know when extra help is needed</h2>
           <p>If distress feels persistent, if your ability to function drops significantly, or if there are concerns about your safety, it is important to seek appropriate professional or emergency support. Reaching out is part of care, not a failure of integration.</p>
+          <h2>Let insight become generosity</h2>
+          <p>Integration can sometimes open into a wider sense of responsibility and care for others. You might notice opportunities to be of service, whether through small acts of kindness or a broader ethical reorientation. Some people find texts such as <em>The Life You Can Save</em> by Peter Singer or talks such as Alan Watts’ <em>Eastern Wisdom and Modern Life</em> helpful companions in that phase.</p>
+          <h2>Come home kindly</h2>
+          <p>After an expansive experience, the people around you may simply have been living ordinary days. Reconnecting gently matters. Ask loved ones how their day was. Help with chores. Re-enter shared life with kindness. Integration is not only about honouring what happened to you, but about returning to relationship and reality with more care.</p>
+          <h2>Try your best, and allow your humanity</h2>
+          <p>Integration is rarely tidy. Try your best. Accept your failures. Recognise your anger and your pain when they are present. The point is not perfection, but honesty, repair, and continued willingness to stay in relationship with yourself.</p>
+          <h2>Remember to laugh</h2>
+          <p>Humour can be part of integration too. Sometimes laughter, including at yourself and at the great cosmic joke we all seem to be part of, can help loosen the grip of heaviness and bring tenderness back into perspective.</p>
           <p>Integration is often less about finding the perfect interpretation and more about building a relationship with what you learned.</p>
         </article>
       </section>
