@@ -288,21 +288,96 @@ function getProfileMetaItems(scope) {
   }));
 }
 
+function getContactIntroMarkup({ eyebrow, title, titleTag = "h2", copy }) {
+  const headingMarkup = `<${titleTag}>${escapeHtml(title)}</${titleTag}>`;
+
+  return `
+    <div class="kc-home-contact__intro">
+      <p class="kc-eyebrow">${escapeHtml(eyebrow)}</p>
+      ${headingMarkup}
+      <p>${escapeHtml(copy)}</p>
+      <div class="kc-contact-notes">
+        <p><strong>Email:</strong> <a class="kc-contact-email-link" href="mailto:${KC_CONTACT_EMAIL}?subject=Hello">${KC_CONTACT_EMAIL}</a></p>
+      </div>
+    </div>
+  `;
+}
+
+function getContactSectionMarkup({ eyebrow, title, titleTag = "h2", copy, compact, pageClass = "" }) {
+  const sectionClass = ["kc-home-contact", pageClass].filter(Boolean).join(" ");
+
+  return `
+    <section class="${sectionClass}">
+      ${getContactIntroMarkup({ eyebrow, title, titleTag, copy })}
+      <div class="kc-home-contact__form">
+        ${getStaticContactFormMarkup({
+          eyebrow: "Write to us",
+          title: "Send a message",
+          compact,
+        })}
+      </div>
+    </section>
+  `;
+}
+
+function getPageHeroMarkup({ eyebrow, title, titleTag = "h1", heroClass = "", split = false, contentMarkup = "", mediaMarkup = "" }) {
+  const sectionClass = ["kc-page-hero", split ? "kc-page-hero--split" : "", heroClass].filter(Boolean).join(" ");
+  const headingMarkup = `
+    <p class="kc-eyebrow">${escapeHtml(eyebrow)}</p>
+    <${titleTag}>${escapeHtml(title)}</${titleTag}>
+    ${contentMarkup}
+  `;
+
+  if (!split && !mediaMarkup) {
+    return `
+      <section class="${sectionClass}">
+        ${headingMarkup}
+      </section>
+    `;
+  }
+
+  return `
+    <section class="${sectionClass}">
+      <div class="kc-page-hero__content">
+        ${headingMarkup}
+      </div>
+      <div class="kc-page-hero__media">
+        ${mediaMarkup}
+      </div>
+    </section>
+  `;
+}
+
+function getPaginationSectionMarkup(pagination) {
+  if (!pagination.length) {
+    return "";
+  }
+
+  return `
+    <section class="kc-page-section">
+      <div class="kc-pagination-grid">
+        ${pagination.map((item) => `
+          <a class="kc-pagination-card" href="${escapeHtml(item.href)}">
+            <p class="kc-eyebrow">${escapeHtml(item.direction)}</p>
+            <h2>${escapeHtml(item.title)}</h2>
+          </a>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderHomePage() {
   if (document.querySelector(".kc-home-shell")) {
     return;
   }
 
-  const header = document.querySelector("#header");
-  const siteWrapper = document.querySelector("#siteWrapper");
   const sections = Array.from(document.querySelectorAll(".page-section"));
-  const footer = document.querySelector("#footer-sections");
   const heroSection = sections[0];
   const aboutSection = sections[1];
   const contactSection = sections[2];
-  const socialLinks = getSocialLinks();
 
-  if (!siteWrapper || !heroSection || !aboutSection || !contactSection) {
+  if (!heroSection || !aboutSection || !contactSection) {
     return;
   }
 
@@ -313,20 +388,9 @@ function renderHomePage() {
   const contactTitle = contactSection.querySelector("h1, h2")?.textContent.trim() || "Contact";
   const contactCopy = contactSection.querySelector("p")?.textContent.trim() || "";
 
-  const shell = document.createElement("div");
-  shell.className = "kc-home-shell";
-  shell.innerHTML = `
-    <header class="kc-site-header">
-      <div class="kc-site-header__inner">
-        <a class="kc-site-brand" href="/" aria-label="Karuna Communitas home">
-          <img class="kc-site-brand__logo" src="${KC_LOGO_PATH}" alt="Karuna Communitas">
-        </a>
-        <nav class="kc-site-nav" aria-label="Primary">
-          ${getPrimaryNavMarkup("/")}
-        </nav>
-      </div>
-    </header>
-    <main class="kc-home-main">
+  const shell = buildSiteShell({
+    currentPath: "/",
+    mainContent: `
       <section class="kc-home-hero">
         <div class="kc-home-hero__content">
           <p class="kc-home-kicker">Grounded, relational, community-rooted</p>
@@ -388,56 +452,16 @@ function renderHomePage() {
           </a>
         </div>
       </section>
-      <section class="kc-home-contact">
-        <div class="kc-home-contact__intro">
-          <p class="kc-eyebrow">Start here</p>
-          <h2>${contactTitle}</h2>
-          <p>${contactCopy}</p>
-          <div class="kc-contact-notes">
-            <p><strong>Email:</strong> <a class="kc-contact-email-link" href="mailto:${KC_CONTACT_EMAIL}?subject=Hello">${KC_CONTACT_EMAIL}</a></p>
-          </div>
-        </div>
-        <div class="kc-home-contact__form">
-          ${getStaticContactFormMarkup({
-            eyebrow: "Write to us",
-            title: "Send a message",
-            compact: true,
-          })}
-        </div>
-      </section>
-    </main>
-    <footer class="kc-site-footer">
-      <div>
-        <p class="kc-eyebrow">Karuna Communitas</p>
-        <p>A living network for compassionate, ethical, community-rooted transformation.</p>
-      </div>
-      <div class="kc-site-footer__links">
-        <a href="/about">About</a>
-        <a href="/practitioners">Practitioners</a>
-        <a href="/articles">Articles</a>
-        <a href="/contact">Contact</a>
-      </div>
-      <div class="kc-site-footer__social"></div>
-    </footer>
-  `;
-
-  const socialSlot = shell.querySelector(".kc-site-footer__social");
-  socialLinks.forEach((link) => {
-    const anchor = document.createElement("a");
-    anchor.href = link.href;
-    anchor.textContent = labelForSocialLink(link.href);
-    socialSlot.appendChild(anchor);
+      ${getContactSectionMarkup({
+        eyebrow: "Start here",
+        title: contactTitle,
+        copy: contactCopy,
+        compact: true,
+      })}
+    `,
   });
 
-  if (!socialSlot.children.length) {
-    socialSlot.remove();
-  }
-
-  header?.remove();
-  sections.forEach((section) => section.remove());
-  footer?.remove();
-  siteWrapper.prepend(shell);
-  document.body.classList.add("kc-home-rebuilt");
+  replaceWithShell(shell, "kc-home-rebuilt");
 }
 
 function renderContactPage() {
@@ -445,84 +469,28 @@ function renderContactPage() {
     return;
   }
 
-  const header = document.querySelector("#header");
-  const siteWrapper = document.querySelector("#siteWrapper");
-  const sections = Array.from(document.querySelectorAll(".page-section"));
-  const footer = document.querySelector("#footer-sections");
-  const heroSection = sections[0];
-  const socialLinks = getSocialLinks();
-
-  if (!siteWrapper || !heroSection) {
+  const heroSection = document.querySelector(".page-section");
+  if (!heroSection) {
     return;
   }
 
   const title = heroSection.querySelector("h1, h2")?.textContent.trim() || "Contact Us";
   const copy = heroSection.querySelector("p")?.textContent.trim() || "We would love to hear from you.";
 
-  const shell = document.createElement("div");
-  shell.className = "kc-home-shell kc-contact-shell";
-  shell.innerHTML = `
-    <header class="kc-site-header">
-      <div class="kc-site-header__inner">
-        <a class="kc-site-brand" href="/" aria-label="Karuna Communitas home">
-          <img class="kc-site-brand__logo" src="${KC_LOGO_PATH}" alt="Karuna Communitas">
-        </a>
-        <nav class="kc-site-nav" aria-label="Primary">
-          ${getPrimaryNavMarkup("/contact")}
-        </nav>
-      </div>
-    </header>
-    <main class="kc-home-main">
-      <section class="kc-home-contact kc-home-contact--page">
-        <div class="kc-home-contact__intro">
-          <p class="kc-eyebrow">Contact</p>
-          <h1>${title}</h1>
-          <p>${copy}</p>
-          <div class="kc-contact-notes">
-            <p><strong>Email:</strong> <a class="kc-contact-email-link" href="mailto:${KC_CONTACT_EMAIL}?subject=Hello">${KC_CONTACT_EMAIL}</a></p>
-          </div>
-        </div>
-        <div class="kc-home-contact__form">
-          ${getStaticContactFormMarkup({
-            eyebrow: "Write to us",
-            title: "Send a message",
-            compact: false,
-          })}
-        </div>
-      </section>
-    </main>
-    <footer class="kc-site-footer">
-      <div>
-        <p class="kc-eyebrow">Karuna Communitas</p>
-        <p>A living network for compassionate, ethical, community-rooted transformation.</p>
-      </div>
-      <div class="kc-site-footer__links">
-        <a href="/about">About</a>
-        <a href="/practitioners">Practitioners</a>
-        <a href="/articles">Articles</a>
-        <a href="/contact">Contact</a>
-      </div>
-      <div class="kc-site-footer__social"></div>
-    </footer>
-  `;
-
-  const socialSlot = shell.querySelector(".kc-site-footer__social");
-  socialLinks.forEach((link) => {
-    const anchor = document.createElement("a");
-    anchor.href = link.href;
-    anchor.textContent = labelForSocialLink(link.href);
-    socialSlot.appendChild(anchor);
+  const shell = buildSiteShell({
+    currentPath: "/contact",
+    shellClass: "kc-contact-shell",
+    mainContent: getContactSectionMarkup({
+      eyebrow: "Contact",
+      title,
+      titleTag: "h1",
+      copy,
+      compact: false,
+      pageClass: "kc-home-contact--page",
+    }),
   });
 
-  if (!socialSlot.children.length) {
-    socialSlot.remove();
-  }
-
-  header?.remove();
-  sections.forEach((section) => section.remove());
-  footer?.remove();
-  siteWrapper.prepend(shell);
-  document.body.classList.add("kc-contact-rebuilt");
+  replaceWithShell(shell, "kc-contact-rebuilt");
 }
 
 function renderAboutPage() {
@@ -551,16 +519,13 @@ function renderAboutPage() {
     currentPath: "/about",
     shellClass: "kc-about-shell",
     mainContent: `
-      <section class="kc-page-hero kc-page-hero--split">
-        <div class="kc-page-hero__content">
-          <p class="kc-eyebrow">About</p>
-          <h1>${escapeHtml(introTitle)}</h1>
-          ${introParagraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
-        </div>
-        <div class="kc-page-hero__media">
-          ${introImage ? `<img src="${escapeHtml(introImage)}" alt="Karuna Communitas community">` : ""}
-        </div>
-      </section>
+      ${getPageHeroMarkup({
+        eyebrow: "About",
+        title: introTitle,
+        split: true,
+        contentMarkup: introParagraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join(""),
+        mediaMarkup: introImage ? `<img src="${escapeHtml(introImage)}" alt="Karuna Communitas community">` : "",
+      })}
       <section class="kc-page-section kc-page-section--duo">
         <article class="kc-value-card">
           <p class="kc-eyebrow">Karuna</p>
@@ -628,11 +593,11 @@ function renderArticlesPage() {
     currentPath: "/articles",
     shellClass: "kc-articles-shell",
     mainContent: `
-      <section class="kc-page-hero">
-        <p class="kc-eyebrow">Articles</p>
-        <h1>Writing rooted in healing, relationship, and community.</h1>
-        <p>Stories, reflections, and research-informed thoughts from the Karuna Communitas network.</p>
-      </section>
+      ${getPageHeroMarkup({
+        eyebrow: "Articles",
+        title: "Writing rooted in healing, relationship, and community.",
+        contentMarkup: `<p>Stories, reflections, and research-informed thoughts from the Karuna Communitas network.</p>`,
+      })}
       <section class="kc-page-section">
         <div class="kc-article-grid">
           ${cards}
@@ -678,11 +643,11 @@ function renderTeamPage() {
     currentPath: "/team",
     shellClass: "kc-team-shell",
     mainContent: `
-      <section class="kc-page-hero">
-        <p class="kc-eyebrow">Team</p>
-        <h1>${escapeHtml(title)}</h1>
-        <p>${escapeHtml(introCopy)}</p>
-      </section>
+      ${getPageHeroMarkup({
+        eyebrow: "Team",
+        title,
+        contentMarkup: `<p>${escapeHtml(introCopy)}</p>`,
+      })}
       <section class="kc-page-section">
         <div class="kc-profile-grid">
           ${members
@@ -744,11 +709,11 @@ function renderPractitionersPage() {
     currentPath: "/practitioners",
     shellClass: "kc-practitioners-shell",
     mainContent: `
-      <section class="kc-page-hero">
-        <p class="kc-eyebrow">Practitioners</p>
-        <h1>${escapeHtml(title.replace("Practioners", "Practitioners"))}</h1>
-        ${paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
-      </section>
+      ${getPageHeroMarkup({
+        eyebrow: "Practitioners",
+        title: title.replace("Practioners", "Practitioners"),
+        contentMarkup: paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join(""),
+      })}
       <section class="kc-page-section">
         <div class="kc-practitioner-grid">
           ${cards}
@@ -796,11 +761,11 @@ function renderStorePage() {
     currentPath: "/store",
     shellClass: "kc-store-shell",
     mainContent: `
-      <section class="kc-page-hero">
-        <p class="kc-eyebrow">Store</p>
-        <h1>Small offerings that help support the wider work.</h1>
-        <p>Merch and simple goods that extend the spirit of Karuna Communitas without feeling like a corporate storefront.</p>
-      </section>
+      ${getPageHeroMarkup({
+        eyebrow: "Store",
+        title: "Small offerings that help support the wider work.",
+        contentMarkup: `<p>Merch and simple goods that extend the spirit of Karuna Communitas without feeling like a corporate storefront.</p>`,
+      })}
       <section class="kc-page-section">
         <div class="kc-store-grid">
           ${products}
@@ -833,34 +798,23 @@ function renderArticleDetailPage() {
     currentPath: "/articles",
     shellClass: "kc-article-detail-shell",
     mainContent: `
-      <section class="kc-page-hero kc-page-hero--split kc-detail-hero">
-        <div class="kc-page-hero__content">
-          <p class="kc-eyebrow">Article</p>
-          <h1>${escapeHtml(title)}</h1>
+      ${getPageHeroMarkup({
+        eyebrow: "Article",
+        title,
+        heroClass: "kc-detail-hero",
+        split: true,
+        contentMarkup: `
           <p class="kc-detail-meta">${escapeHtml(author)}${author && date ? " · " : ""}${escapeHtml(date)}</p>
           <p>Long-form reflections from the Karuna Communitas network on healing, communitas, and grounded psychedelic care.</p>
-        </div>
-        <div class="kc-page-hero__media">
-          ${heroImage ? `<img src="${escapeHtml(heroImage)}" alt="${escapeHtml(title)}">` : ""}
-        </div>
-      </section>
+        `,
+        mediaMarkup: heroImage ? `<img src="${escapeHtml(heroImage)}" alt="${escapeHtml(title)}">` : "",
+      })}
       <section class="kc-page-section kc-detail-content">
         <article class="kc-rich-copy">
           ${bodyMarkup}
         </article>
       </section>
-      ${pagination.length ? `
-        <section class="kc-page-section">
-          <div class="kc-pagination-grid">
-            ${pagination.map((item) => `
-              <a class="kc-pagination-card" href="${escapeHtml(item.href)}">
-                <p class="kc-eyebrow">${escapeHtml(item.direction)}</p>
-                <h2>${escapeHtml(item.title)}</h2>
-              </a>
-            `).join("")}
-          </div>
-        </section>
-      ` : ""}
+      ${getPaginationSectionMarkup(pagination)}
     `,
   });
 
@@ -887,38 +841,27 @@ function renderProfileDetailPage() {
     currentPath: "/practitioners",
     shellClass: "kc-profile-detail-shell",
     mainContent: `
-      <section class="kc-page-hero kc-page-hero--split kc-detail-hero kc-detail-hero--profile">
-        <div class="kc-page-hero__content">
-          <p class="kc-eyebrow">Practitioner Profile</p>
-          <h1>${escapeHtml(title)}</h1>
+      ${getPageHeroMarkup({
+        eyebrow: "Practitioner Profile",
+        title,
+        heroClass: "kc-detail-hero kc-detail-hero--profile",
+        split: true,
+        contentMarkup: `
           ${metaItems.length ? `
             <div class="kc-chip-row">
               ${metaItems.map((item) => `<a class="kc-chip" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`).join("")}
             </div>
           ` : ""}
           <p>Grounded, relational support for preparation, integration, and ongoing therapeutic care.</p>
-        </div>
-        <div class="kc-page-hero__media">
-          ${heroImage ? `<img src="${escapeHtml(heroImage)}" alt="${escapeHtml(title)}">` : ""}
-        </div>
-      </section>
+        `,
+        mediaMarkup: heroImage ? `<img src="${escapeHtml(heroImage)}" alt="${escapeHtml(title)}">` : "",
+      })}
       <section class="kc-page-section kc-detail-content">
         <article class="kc-rich-copy kc-rich-copy--profile">
           ${bodyMarkup}
         </article>
       </section>
-      ${pagination.length ? `
-        <section class="kc-page-section">
-          <div class="kc-pagination-grid">
-            ${pagination.map((item) => `
-              <a class="kc-pagination-card" href="${escapeHtml(item.href)}">
-                <p class="kc-eyebrow">${escapeHtml(item.direction)}</p>
-                <h2>${escapeHtml(item.title)}</h2>
-              </a>
-            `).join("")}
-          </div>
-        </section>
-      ` : ""}
+      ${getPaginationSectionMarkup(pagination)}
     `,
   });
 
@@ -953,21 +896,21 @@ function renderProductDetailPage() {
     currentPath: "/store",
     shellClass: "kc-product-detail-shell",
     mainContent: `
-      <section class="kc-page-hero kc-page-hero--split kc-detail-hero">
-        <div class="kc-page-hero__content">
-          <p class="kc-eyebrow">Store</p>
-          <h1>${escapeHtml(title)}</h1>
+      ${getPageHeroMarkup({
+        eyebrow: "Store",
+        title,
+        heroClass: "kc-detail-hero",
+        split: true,
+        contentMarkup: `
           <p class="kc-store-price">${escapeHtml(price)}</p>
           <p>This GitHub Pages version keeps the product information visible in a simple static format.</p>
           <div class="kc-inline-actions">
             <a class="kc-home-button kc-home-button--solid" href="/contact">Enquire about this item</a>
             <a class="kc-home-button" href="/store">Back to store</a>
           </div>
-        </div>
-        <div class="kc-page-hero__media">
-          ${image ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(title)}">` : ""}
-        </div>
-      </section>
+        `,
+        mediaMarkup: image ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(title)}">` : "",
+      })}
       <section class="kc-page-section kc-detail-content">
         <article class="kc-rich-copy">
           ${descriptionMarkup || "<p>Product details coming soon.</p>"}
