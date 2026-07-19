@@ -1130,6 +1130,7 @@ body.kc-home-rebuilt::before {
   gap: 1rem;
 }
 
+
 .kc-path-card {
   text-decoration: none;
   transition: transform 180ms ease, border-color 180ms ease;

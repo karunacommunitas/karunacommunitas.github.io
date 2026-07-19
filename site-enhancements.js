@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ["/", "home"],
     ["/about", "about"],
     ["/articles", "articles"],
+    ["/resources", "resources"],
+    ["/resources/preparation-tips", "preparation-tips"],
+    ["/resources/integration-tips", "integration-tips"],
     ["/team", "team"],
     ["/practitioners", "practitioners"],
     ["/contact", "contact"],
@@ -71,6 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (body.classList.contains("kc-page-articles")) {
     renderArticlesPage();
+  }
+
+  if (body.classList.contains("kc-page-resources")) {
+    renderResourcesPage();
+  }
+
+  if (body.classList.contains("kc-page-preparation-tips")) {
+    renderPreparationTipsPage();
+  }
+
+  if (body.classList.contains("kc-page-integration-tips")) {
+    renderIntegrationTipsPage();
   }
 
   if (body.classList.contains("kc-page-team")) {
@@ -182,6 +197,7 @@ function buildSiteShell({ currentPath, shellClass = "", mainContent }) {
       <div class="kc-site-footer__links">
         <a href="/about">About</a>
         <a href="/practitioners">Practitioners</a>
+        <a href="/resources">Resources</a>
         <a href="/articles">Articles</a>
         <a href="/contact">Contact</a>
       </div>
@@ -210,6 +226,7 @@ function getPrimaryNavMarkup(currentPath) {
     { href: "/about", label: "About" },
     { href: "/team", label: "Team" },
     { href: "/practitioners", label: "Practitioners" },
+    { href: "/resources", label: "Resources" },
     { href: "/articles", label: "Articles" },
     { href: "/store", label: "Store" },
     { href: "/contact", label: "Contact" },
@@ -606,6 +623,164 @@ function renderArticlesPage() {
   });
 
   replaceWithShell(shell, "kc-articles-rebuilt");
+}
+
+function renderResourcesPage() {
+  if (document.querySelector(".kc-resources-shell")) {
+    return;
+  }
+
+  const shell = buildSiteShell({
+    currentPath: "/resources",
+    shellClass: "kc-resources-shell",
+    mainContent: `
+      ${getPageHeroMarkup({
+        eyebrow: "Resources",
+        title: "Practical support for preparation and integration.",
+        contentMarkup: `
+          <p>Grounded guidance for approaching these experiences with care, clarity, and a strong sense of relational support.</p>
+          <p>These resources are educational in nature and are not a substitute for medical advice, emergency support, or crisis care.</p>
+        `,
+      })}
+      <section class="kc-page-section">
+        <div class="kc-home-path-grid">
+          <a class="kc-path-card" href="/resources/preparation-tips">
+            <h2>Preparation Tips</h2>
+            <p>Support for intention-setting, practical planning, emotional honesty, and creating the conditions for safety.</p>
+          </a>
+          <a class="kc-path-card" href="/resources/integration-tips">
+            <h2>Integration Tips</h2>
+            <p>Support for reflection, pacing, embodiment, and turning insight into meaningful change in everyday life.</p>
+          </a>
+        </div>
+      </section>
+      <section class="kc-page-section">
+        <div class="kc-page-section__intro">
+          <p class="kc-eyebrow">Support</p>
+          <h2>Looking for personal support?</h2>
+          <p>If you would like one-to-one preparation or integration support, you can explore practitioners in the wider Karuna Communitas network.</p>
+          <div class="kc-inline-actions">
+            <a class="kc-home-button kc-home-button--solid" href="/practitioners">Find a practitioner</a>
+          </div>
+        </div>
+      </section>
+    `,
+  });
+
+  replaceWithShell(shell, "kc-resources-rebuilt");
+}
+
+function renderPreparationTipsPage() {
+  if (document.querySelector(".kc-preparation-shell")) {
+    return;
+  }
+
+  const shell = buildSiteShell({
+    currentPath: "/resources",
+    shellClass: "kc-preparation-shell",
+    mainContent: `
+      ${getPageHeroMarkup({
+        eyebrow: "Resources",
+        title: "Preparation Tips",
+        contentMarkup: `
+          <p>Creating the conditions for safety, clarity, and intention before an experience can be just as important as the experience itself.</p>
+          <div class="kc-inline-actions">
+            <a class="kc-home-button" href="/resources">Back to resources</a>
+          </div>
+        `,
+      })}
+      <section class="kc-page-section">
+        <article class="kc-rich-copy">
+          <p>Preparation is not only practical. It is also emotional, relational, and reflective. The aim is not to control what happens, but to approach the experience with care, honesty, and enough support around you.</p>
+          <h2>Clarify your intention</h2>
+          <p>Ask yourself why you are approaching this experience now. You may be hoping to understand a pattern, reconnect with yourself, process something difficult, or simply enter the experience with more openness and care. A clear intention can help you feel anchored without turning the experience into a test you have to pass.</p>
+          <h2>Be honest about your current state</h2>
+          <p>Take stock of how you have been recently. Stress, exhaustion, emotional instability, major life disruption, or limited support can all affect how prepared you feel. Honesty here is not about judging yourself. It is about noticing what kind of support, pacing, or postponement might actually be wise.</p>
+          <h2>Consider set and setting</h2>
+          <p>Preparation includes the inner and outer environment. Your mindset, the physical setting, the people around you, and the degree of trust and safety available all matter. If the wider context feels pressured, chaotic, or unsafe, that is important information.</p>
+          <h2>Plan your support</h2>
+          <p>Think ahead about who you can speak to before and after the experience. This might be a trusted friend, therapist, integration practitioner, or other grounded support person. Knowing you will not be left alone with what emerges can make a real difference.</p>
+          <h2>Reduce unnecessary pressure</h2>
+          <p>It can help to soften expectations of breakthrough, certainty, or transformation. Preparation is often stronger when it is rooted in curiosity rather than performance. You do not need to force a life-changing outcome for the experience to be meaningful.</p>
+          <h2>Prepare practically</h2>
+          <p>Attend to sleep, food, hydration, transport, comfort, and the time you will need afterwards. Practical details are easy to dismiss, but they often shape how supported and resourced you feel. Leaving space after the experience is part of the preparation, not an optional extra.</p>
+          <h2>Know your boundaries</h2>
+          <p>Preparation also includes recognising when something does not feel right. If you feel pressured, unsure, unwell, or unsupported, it may be better to pause and seek advice. Respecting your limits is part of creating safety.</p>
+          <p>Careful preparation is not separate from the journey. It is part of the work itself.</p>
+        </article>
+      </section>
+      <section class="kc-page-section">
+        <div class="kc-page-section__intro">
+          <p class="kc-eyebrow">Next</p>
+          <h2>When the experience is over, integration begins.</h2>
+          <p>Making meaning from what happened often takes time, gentleness, and support.</p>
+          <div class="kc-inline-actions">
+            <a class="kc-home-button kc-home-button--solid" href="/resources/integration-tips">Explore integration tips</a>
+            <a class="kc-home-button" href="/practitioners">Find a practitioner</a>
+          </div>
+        </div>
+      </section>
+    `,
+  });
+
+  replaceWithShell(shell, "kc-preparation-rebuilt");
+}
+
+function renderIntegrationTipsPage() {
+  if (document.querySelector(".kc-integration-shell")) {
+    return;
+  }
+
+  const shell = buildSiteShell({
+    currentPath: "/resources",
+    shellClass: "kc-integration-shell",
+    mainContent: `
+      ${getPageHeroMarkup({
+        eyebrow: "Resources",
+        title: "Integration Tips",
+        contentMarkup: `
+          <p>Integration is the process of making space for reflection, meaning, and grounded next steps after an experience.</p>
+          <div class="kc-inline-actions">
+            <a class="kc-home-button" href="/resources">Back to resources</a>
+          </div>
+        `,
+      })}
+      <section class="kc-page-section">
+        <article class="kc-rich-copy">
+          <p>Integration does not need to be rushed. Sometimes the most helpful thing is to create enough spaciousness for meaning to unfold gradually, rather than trying to pin everything down too quickly.</p>
+          <h2>Give yourself time</h2>
+          <p>If possible, reduce stimulation and allow some time for rest. Gentle pacing can help you notice what remains meaningful after the intensity has passed. Not every insight needs to become action immediately.</p>
+          <h2>Record what feels important</h2>
+          <p>Journalling, voice notes, drawing, or writing down a few phrases can help preserve what feels alive before it becomes harder to recall. You do not need to capture everything. A few honest fragments are often enough.</p>
+          <h2>Stay curious, not forceful</h2>
+          <p>Some experiences feel clear straight away. Others take longer to understand. It can help to stay close to the questions that emerged without demanding instant certainty. Meaning often develops in layers.</p>
+          <h2>Talk to someone you trust</h2>
+          <p>Sharing with a trusted friend, therapist, or integration practitioner can help you feel less alone and can support you in making sense of what stands out. Relational reflection is often part of how integration deepens.</p>
+          <h2>Support the body as well as the mind</h2>
+          <p>Sleep, nourishing food, walking, breath, movement, and steady routines can all help with integration. The nervous system may need as much care as the thinking mind. Gentle embodiment practices can be especially supportive.</p>
+          <h2>Look for one small next step</h2>
+          <p>Rather than trying to transform everything at once, ask what one grounded change might look like. This could be a conversation, a boundary, a new practice, or a small shift in how you care for yourself day to day.</p>
+          <h2>Be gentle with intensity</h2>
+          <p>Difficult or tender material can continue to surface afterwards. If the experience leaves you feeling disoriented or emotionally raw, that does not mean you have done anything wrong. It may simply mean more support, rest, or containment is needed.</p>
+          <h2>Know when extra help is needed</h2>
+          <p>If distress feels persistent, if your ability to function drops significantly, or if there are concerns about your safety, it is important to seek appropriate professional or emergency support. Reaching out is part of care, not a failure of integration.</p>
+          <p>Integration is often less about finding the perfect interpretation and more about building a relationship with what you learned.</p>
+        </article>
+      </section>
+      <section class="kc-page-section">
+        <div class="kc-page-section__intro">
+          <p class="kc-eyebrow">Support</p>
+          <h2>You do not have to make sense of everything alone.</h2>
+          <p>If you are looking for grounded one-to-one support, the Karuna Communitas practitioner network may be a good next step.</p>
+          <div class="kc-inline-actions">
+            <a class="kc-home-button kc-home-button--solid" href="/practitioners">Find a practitioner</a>
+          </div>
+        </div>
+      </section>
+    `,
+  });
+
+  replaceWithShell(shell, "kc-integration-rebuilt");
 }
 
 function renderTeamPage() {
