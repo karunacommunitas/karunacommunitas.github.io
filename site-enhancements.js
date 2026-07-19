@@ -884,22 +884,32 @@ function renderGroundingExercisesPage() {
           <p>Not every grounding practice works for every person. The aim is not to force calm, but to find a few simple ways of reorienting to the present when things feel overwhelming, floaty, shut down, or emotionally intense.</p>
           <h2>Use the senses</h2>
           <p>Look around and name a few things you can see, hear, feel, or smell. You might notice the weight of your body on a chair, the texture of clothing on your skin, or the sounds in the room around you. Sensory orientation can gently remind the nervous system that you are here, now.</p>
+          <h2>Try a simple 5-4-3-2-1 practice</h2>
+          <p>You might name five things you can see, four you can feel, three you can hear, two you can smell, and one you can taste. This kind of structured sensory exercise can be especially helpful when thoughts are racing or attention feels scattered.</p>
           <h2>Feel your feet</h2>
           <p>Press your feet into the floor and notice the contact points. If helpful, stand up and slowly shift your weight from one foot to the other. Some people find it especially regulating to stand barefoot on grass, soil, or stone and feel the ground beneath them directly.</p>
           <h2>Body scan</h2>
           <p>A body scan can support body awareness and relaxation, helping to centre you in the present moment. You might close your eyes and bring attention to different parts of the body, starting at the toes and moving upward. Notice sensations, tension, numbness, or discomfort without needing to fix anything immediately, and allow any held tension to soften where it can.</p>
           <h2>Slow the exhale</h2>
           <p>Without forcing the breath, try allowing the out-breath to lengthen slightly. A slow, focused exhale can help signal safety to the body and soften activation. The point is not perfect technique, just a little more steadiness and space.</p>
+          <h2>Orient to the room</h2>
+          <p>Open your eyes and slowly look around the space you are in. Let your gaze land on doors, windows, corners, colours, and familiar objects. Reminding yourself where you are can help reduce the sense of being pulled into the past or lost in internal intensity.</p>
           <h2>Hold something supportive</h2>
           <p>A blanket, cushion, warm mug, smooth stone, or meaningful object can help anchor attention in the physical world. Simple contact with something solid and familiar can sometimes be more regulating than trying to think your way out of distress.</p>
+          <h2>Use temperature</h2>
+          <p>A change in temperature can sometimes help bring you back into the present. You might hold a cool glass of water, splash your face with cold water, wrap yourself in a warm blanket, or notice the temperature of the air on your skin.</p>
           <h2>Move gently</h2>
           <p>Grounding does not always mean becoming still. Walking, stretching, shaking out the hands, or making slow circular movements with the shoulders can help bring attention back into the body and discharge some intensity.</p>
+          <h2>Use rhythm and repetition</h2>
+          <p>Simple repetitive actions can be regulating. You might tap your hands gently on your legs, count your steps while walking, hum softly, rock in a chair, or repeat a calming phrase. Rhythm can sometimes help the nervous system find a steadier pace.</p>
           <h2>Go outside if you can</h2>
           <p>Fresh air, trees, open sky, or the feeling of your feet in the sea can all be grounding. Some people find it helpful to hug a tree, sit on the earth, or simply look at something living and steady in the natural world.</p>
           <h2>Use visualisation</h2>
           <p>Visualisation can sometimes evoke a sense of calm and safety when the external world feels too much. You might close your eyes and imagine yourself in a peaceful, grounding environment such as a forest, beach, or mountain. Let yourself picture the supportive elements of that place around you and notice whether their steadiness helps you feel a little more anchored.</p>
           <h2>Name what is happening kindly</h2>
           <p>Sometimes grounding begins with simple language: “Something in me feels overwhelmed,” or “I am noticing fear in my body.” Naming experience gently can reduce the sense of being engulfed by it and create a little more room to stay present.</p>
+          <h2>Drink water slowly</h2>
+          <p>Sipping water with full attention can be a small but effective grounding practice. Notice the temperature, the sensation in the mouth and throat, and the pace of each sip. Small, concrete acts can help re-establish connection with the body.</p>
           <h2>Keep it simple</h2>
           <p>In moments of intensity, the most effective grounding practice is often the simplest one. Rather than reaching for the perfect method, it can help to return to one or two practices you already know feel accessible and supportive.</p>
           <p>Grounding is not about getting rid of experience. It is about helping yourself stay connected enough to move through it with more support.</p>
