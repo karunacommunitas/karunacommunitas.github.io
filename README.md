@@ -23,3 +23,6 @@ This repository contains a static GitHub Pages-friendly mirror of the current si
 3. Set the source to `Deploy from a branch`.
 4. Choose the default branch and the `/ (root)` folder.
 5. If you want to use `www.karunacommunitas.com`, add the custom domain in GitHub Pages settings and point DNS at GitHub Pages.
+
+
+Change
