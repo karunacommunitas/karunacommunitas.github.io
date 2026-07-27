@@ -1,17 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap");
 
 :root {
-  --kc-bg: #f5f1e8;
-  --kc-paper: #fcfaf4;
-  --kc-paper-soft: #f1ebdf;
-  --kc-ink: #273127;
-  --kc-ink-soft: #5f685d;
-  --kc-line: rgba(39, 49, 39, 0.14);
-  --kc-accent: #5e7156;
-  --kc-accent-soft: #8b947f;
-  --kc-width: min(1100px, calc(100vw - 2rem));
-  --kc-width-narrow: min(760px, calc(100vw - 2rem));
-  --kc-radius: 18px;
+  --kc-bg: #efe1d3;
+  --kc-paper: #f7efe7;
+  --kc-paper-soft: #e9dacb;
+  --kc-paper-strong: #e2cfbf;
+  --kc-ink: #4d362d;
+  --kc-ink-soft: #7a6258;
+  --kc-line: rgba(77, 54, 45, 0.12);
+  --kc-accent: #7d7d61;
+  --kc-accent-soft: #b48d78;
+  --kc-width: min(1520px, calc(100vw - 0.75rem));
+  --kc-width-narrow: min(880px, calc(100vw - 1rem));
+  --kc-radius: 6px;
 }
 
 *,
@@ -28,7 +29,7 @@ body {
   margin: 0;
   background: var(--kc-bg);
   color: var(--kc-ink);
-  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-family: "Manrope", system-ui, sans-serif;
   line-height: 1.7;
 }
 
@@ -38,8 +39,22 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at top left, rgba(94, 113, 86, 0.06), transparent 26%),
-    radial-gradient(circle at bottom right, rgba(139, 148, 127, 0.06), transparent 28%);
+    radial-gradient(circle at top left, rgba(180, 141, 120, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 14%, rgba(125, 125, 97, 0.1), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(255, 246, 237, 0.48), transparent 30%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px;
+  mix-blend-mode: soft-light;
 }
 
 img {
@@ -71,10 +86,10 @@ h4,
 .product-title {
   margin: 0;
   color: var(--kc-ink);
-  font-family: "Fraunces", Georgia, serif;
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
@@ -635,40 +650,34 @@ body.kc-page-profile .blog-item-wrapper {
 
 body.kc-home-rebuilt {
   background:
-    radial-gradient(circle at top left, rgba(150, 163, 124, 0.18), transparent 30%),
-    radial-gradient(circle at right 20%, rgba(196, 173, 142, 0.14), transparent 28%),
-    linear-gradient(180deg, #f7f1e7 0%, #f2ebde 100%);
+    radial-gradient(circle at top left, rgba(255, 248, 241, 0.72), transparent 24%),
+    radial-gradient(circle at 78% 20%, rgba(125, 125, 97, 0.1), transparent 20%),
+    linear-gradient(180deg, #efe1d3 0%, #e8d5c5 100%);
 }
 
 body.kc-home-rebuilt::before {
   background:
-    radial-gradient(circle at 20% 10%, rgba(94, 113, 86, 0.08), transparent 18%),
-    radial-gradient(circle at 80% 35%, rgba(164, 140, 103, 0.06), transparent 24%);
+    radial-gradient(circle at 22% 10%, rgba(180, 141, 120, 0.2), transparent 18%),
+    radial-gradient(circle at 80% 35%, rgba(255, 247, 237, 0.34), transparent 26%);
 }
 
 .kc-home-shell {
-  width: min(1180px, calc(100vw - 2rem));
+  width: min(1520px, calc(100vw - 0.75rem));
   margin: 0 auto;
-  padding: 1.1rem 0 3rem;
+  padding: 0.5rem 0 3.4rem;
 }
 
 .kc-site-header {
   position: sticky;
   top: 0;
   z-index: 20;
-  margin-bottom: 2rem;
-  padding: 0.7rem 0 0.95rem;
-  background:
-    linear-gradient(180deg, rgba(12, 23, 28, 0.54), rgba(12, 23, 28, 0.24), rgba(247, 241, 231, 0.05)),
-    linear-gradient(90deg, rgba(247, 241, 231, 0.1), rgba(247, 241, 231, 0.02)),
-    url("/assets/images/branding/header-background-lakeside-fire-circle.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 1px solid rgba(248, 244, 235, 0.1);
-  border-radius: 32px;
-  overflow: hidden;
-  box-shadow: 0 12px 28px rgba(25, 39, 33, 0.12);
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  background: rgba(247, 239, 231, 0.72);
+  border: 1px solid rgba(77, 54, 45, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(95, 68, 59, 0.08);
+  backdrop-filter: blur(14px);
 }
 
 .kc-site-header__inner {
@@ -686,15 +695,16 @@ body.kc-home-rebuilt::before {
 
 .kc-site-brand__logo {
   display: block;
-  width: clamp(11rem, 18vw, 15rem);
+  width: clamp(10.5rem, 16vw, 13.5rem);
   height: auto;
+  filter: saturate(0.78) sepia(0.18) hue-rotate(-12deg);
 }
 
 .kc-site-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 0.75rem;
+  gap: 0.35rem 1rem;
 }
 
 .kc-site-nav a,
@@ -705,40 +715,42 @@ body.kc-home-rebuilt::before {
 }
 
 .kc-site-nav a {
-  padding: 0.45rem 0.25rem;
+  padding: 0.3rem 0;
   border: 0;
   border-radius: 0;
-  color: rgba(250, 247, 240, 0.92);
+  color: var(--kc-ink-soft);
   background: transparent;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .kc-site-nav a:hover,
 .kc-site-nav a:focus-visible {
-  color: #fffdf9;
-  opacity: 1;
+  color: var(--kc-ink);
 }
 
 .kc-site-nav a[aria-current="page"] {
-  color: #fffdf9;
+  color: var(--kc-ink);
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.28rem;
+  text-underline-offset: 0.42rem;
 }
 
 .kc-home-main {
   display: grid;
-  gap: 1.25rem;
+  gap: 0.8rem;
 }
 
 .kc-page-hero,
 .kc-page-section,
 .kc-site-footer {
-  padding: clamp(1.4rem, 2vw, 2rem);
-  border: 1px solid rgba(39, 49, 39, 0.08);
-  border-radius: 32px;
-  background: rgba(252, 250, 244, 0.78);
-  box-shadow: 0 20px 50px rgba(95, 104, 93, 0.08);
+  padding: clamp(1.35rem, 2.1vw, 2rem);
+  border: 1px solid rgba(77, 54, 45, 0.08);
+  border-radius: 8px;
+  background: rgba(247, 239, 231, 0.74);
+  box-shadow: 0 24px 60px rgba(95, 68, 59, 0.07);
 }
 
 .kc-page-hero {
@@ -764,10 +776,10 @@ body.kc-home-rebuilt::before {
 .kc-practitioner-card__body,
 .kc-store-card__body {
   position: relative;
-  padding: 1.35rem;
-  border-radius: 24px;
-  background: rgba(248, 244, 235, 0.88);
-  border: 1px solid rgba(39, 49, 39, 0.08);
+  padding: 1.3rem;
+  border-radius: 4px;
+  background: rgba(250, 244, 238, 0.92);
+  border: 1px solid rgba(77, 54, 45, 0.08);
 }
 
 .kc-page-hero__media {
@@ -782,7 +794,7 @@ body.kc-home-rebuilt::before {
   height: 100%;
   min-height: 20rem;
   object-fit: cover;
-  border-radius: 24px;
+  border-radius: 4px;
 }
 
 .kc-page-section {
@@ -822,7 +834,7 @@ body.kc-home-rebuilt::before {
 
 .kc-rich-copy {
   padding: clamp(1.3rem, 2vw, 2rem);
-  border-radius: 24px;
+  border-radius: 4px;
   background: rgba(248, 244, 235, 0.88);
   border: 1px solid rgba(39, 49, 39, 0.08);
 }
@@ -845,7 +857,7 @@ body.kc-home-rebuilt::before {
 }
 
 .kc-rich-copy h4 {
-  font-family: "Fraunces", Georgia, serif;
+  font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(1.25rem, 1.8vw, 1.55rem);
   color: var(--kc-ink);
   line-height: 1.2;
@@ -875,14 +887,14 @@ body.kc-home-rebuilt::before {
   padding: 0.2rem 0 0.2rem 1rem;
   border-left: 2px solid rgba(94, 113, 86, 0.3);
   color: var(--kc-ink);
-  font-family: "Fraunces", Georgia, serif;
+  font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(1.2rem, 2vw, 1.6rem);
   line-height: 1.45;
 }
 
 .kc-rich-copy img {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 4px;
   margin: 1rem 0;
 }
 
@@ -918,7 +930,7 @@ body.kc-home-rebuilt::before {
   padding: 0.45rem 0.8rem;
   border: 1px solid rgba(39, 49, 39, 0.1);
   border-radius: 999px;
-  background: rgba(252, 250, 244, 0.85);
+  background: rgba(250, 244, 238, 0.92);
   color: var(--kc-ink-soft);
   text-decoration: none;
   font-size: 0.9rem;
@@ -933,10 +945,10 @@ body.kc-home-rebuilt::before {
 .kc-pagination-card {
   display: grid;
   gap: 0.55rem;
-  padding: 1.25rem;
-  border-radius: 24px;
-  background: rgba(248, 244, 235, 0.88);
-  border: 1px solid rgba(39, 49, 39, 0.08);
+  padding: 1.35rem;
+  border-radius: 4px;
+  background: rgba(250, 244, 238, 0.92);
+  border: 1px solid rgba(77, 54, 45, 0.08);
   text-decoration: none;
 }
 
@@ -1016,55 +1028,59 @@ body.kc-home-rebuilt::before {
 .kc-home-paths,
 .kc-home-contact,
 .kc-site-footer {
-  padding: clamp(1.4rem, 2vw, 2rem);
-  border: 1px solid rgba(39, 49, 39, 0.08);
-  border-radius: 32px;
-  background: rgba(252, 250, 244, 0.78);
-  box-shadow: 0 20px 50px rgba(95, 104, 93, 0.08);
+  padding: clamp(1.35rem, 2.1vw, 2rem);
+  border: 1px solid rgba(77, 54, 45, 0.08);
+  border-radius: 8px;
+  background: rgba(247, 239, 231, 0.76);
+  box-shadow: 0 24px 60px rgba(95, 68, 59, 0.07);
 }
 
 .kc-home-hero {
-  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
-  align-items: center;
-  min-height: 34rem;
-  overflow: hidden;
+  grid-template-columns: minmax(0, 1.28fr) minmax(340px, 0.52fr);
+  grid-template-areas:
+    "content panel"
+    "content media";
+  align-items: stretch;
+  min-height: 0;
 }
 
 .kc-home-hero__content {
+  grid-area: content;
   position: relative;
-  padding: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1.3rem, 3.2vw, 2.6rem);
 }
 
 .kc-home-hero__content::before {
   content: "";
   position: absolute;
-  inset: auto auto -7rem -4rem;
-  width: 18rem;
-  height: 18rem;
+  inset: auto auto -6rem -3rem;
+  width: 16rem;
+  height: 16rem;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(167, 177, 144, 0.18), transparent 68%);
+  background: radial-gradient(circle, rgba(180, 141, 120, 0.16), transparent 68%);
   pointer-events: none;
 }
 
 .kc-home-kicker {
   margin: 0 0 1rem;
-  color: var(--kc-accent);
-  font-size: 0.78rem;
+  color: var(--kc-accent-soft);
+  font-size: 0.76rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
 .kc-home-hero h1 {
-  max-width: 12ch;
-  font-size: clamp(3.7rem, 7vw, 6.1rem) !important;
+  max-width: 10ch;
+  font-size: clamp(4rem, 7.2vw, 6.4rem) !important;
+  line-height: 0.9;
 }
 
 .kc-home-lead {
-  max-width: 34rem;
-  margin: 1.4rem 0 0;
-  font-size: clamp(1.08rem, 2vw, 1.3rem);
-  line-height: 1.8;
+  max-width: 33rem;
+  margin: 1.25rem 0 0;
+  font-size: clamp(1.02rem, 1.9vw, 1.18rem);
+  line-height: 1.85;
 }
 
 .kc-home-actions {
@@ -1078,19 +1094,37 @@ body.kc-home-rebuilt::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 10.5rem;
-  padding: 0.95rem 1.4rem;
-  border: 1px solid rgba(39, 49, 39, 0.14);
+  min-width: 11rem;
+  padding: 1rem 1.55rem;
+  border: 1px solid rgba(77, 54, 45, 0.14);
   border-radius: 999px;
   color: var(--kc-ink);
   text-decoration: none;
-  background: transparent;
+  background: rgba(250, 244, 238, 0.64);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.kc-home-button:hover,
+.kc-home-button:focus-visible {
+  transform: translateY(-1px);
+  background: rgba(250, 244, 238, 0.92);
+  border-color: rgba(77, 54, 45, 0.22);
 }
 
 .kc-home-button--solid {
-  background: #627257;
-  color: #f9f5eb;
-  border-color: #627257;
+  background: #7d7d61;
+  color: #fff8f2;
+  border-color: #7d7d61;
+}
+
+.kc-home-button--solid:hover,
+.kc-home-button--solid:focus-visible {
+  background: #6f7057;
+  border-color: #6f7057;
 }
 
 .kc-home-hero,
@@ -1098,7 +1132,7 @@ body.kc-home-rebuilt::before {
 .kc-home-paths,
 .kc-home-contact {
   display: grid;
-  gap: 1.5rem;
+  gap: 0.8rem;
 }
 
 .kc-home-hero__panel,
@@ -1106,20 +1140,20 @@ body.kc-home-rebuilt::before {
 .kc-path-card,
 .kc-home-contact__intro,
 .kc-home-contact__form {
-  padding: 1.35rem;
-  border-radius: 24px;
-  background: rgba(248, 244, 235, 0.88);
-  border: 1px solid rgba(39, 49, 39, 0.08);
+  padding: 1.25rem;
+  border-radius: 4px;
+  background: rgba(250, 244, 238, 0.92);
+  border: 1px solid rgba(77, 54, 45, 0.08);
 }
 
 .kc-home-story,
 .kc-home-contact {
-  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr);
+  grid-template-columns: minmax(0, 0.78fr) minmax(360px, 1.22fr);
   align-items: stretch;
 }
 
 .kc-home-section-heading {
-  padding: 0.4rem 0.35rem;
+  padding: 0.6rem 0.55rem;
 }
 
 .kc-home-section-heading h2,
@@ -1131,23 +1165,61 @@ body.kc-home-rebuilt::before {
 
 .kc-home-story__quote blockquote {
   margin-top: 0;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 0.98;
 }
 
 .kc-home-path-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 
 .kc-path-card {
   text-decoration: none;
-  transition: transform 180ms ease, border-color 180ms ease;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
 }
 
 .kc-path-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(94, 113, 86, 0.25);
+  border-color: rgba(125, 125, 97, 0.28);
+  background: rgba(255, 248, 241, 0.98);
+}
+
+.kc-home-hero__panel {
+  grid-area: panel;
+  align-self: start;
+}
+
+.kc-home-hero__media {
+  grid-area: media;
+  display: grid;
+  gap: 0.9rem;
+  align-self: end;
+}
+
+.kc-home-hero__media img {
+  width: 100%;
+  min-height: 16rem;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid rgba(77, 54, 45, 0.08);
+}
+
+.kc-home-hero__media-note {
+  padding: 1rem 1.15rem;
+  border-radius: 4px;
+  background: rgba(250, 244, 238, 0.92);
+  border: 1px solid rgba(77, 54, 45, 0.08);
+}
+
+.kc-home-hero__media-note p {
+  margin: 0;
+}
+
+.kc-home-hero__media-note p + p {
+  margin-top: 0.45rem;
 }
 
 .kc-home-contact__form .form-wrapper,
@@ -1277,13 +1349,19 @@ body.kc-home-rebuilt::before {
 .kc-site-footer {
   grid-template-columns: minmax(0, 1.2fr) auto auto;
   align-items: start;
-  margin-top: 1.25rem;
+  margin-top: 0.8rem;
 }
 
 .kc-site-footer__links,
 .kc-site-footer__social {
   display: grid;
   gap: 0.5rem;
+}
+
+.kc-site-footer__links a,
+.kc-site-footer__social a {
+  font-size: 0.9rem;
+  color: var(--kc-ink-soft);
 }
 
 @media (max-width: 900px) {
@@ -1299,6 +1377,13 @@ body.kc-home-rebuilt::before {
 
   .kc-home-path-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .kc-home-hero {
+    grid-template-areas:
+      "content"
+      "panel"
+      "media";
   }
 
   .kc-article-grid,
@@ -1326,15 +1411,14 @@ body.kc-home-rebuilt::before {
 
 @media (max-width: 640px) {
   .kc-home-shell {
-    width: min(100vw - 1rem, 1180px);
-    padding-top: 0.6rem;
+    width: min(100vw - 0.4rem, 1520px);
+    padding-top: 0.25rem;
   }
 
   .kc-site-header {
-    margin-bottom: 0.9rem;
-    padding: 0.45rem 0 0.6rem;
-    border-radius: 22px;
-    background-position: 60% center;
+    margin-bottom: 0.7rem;
+    padding: 0.75rem 0.85rem;
+    border-radius: 6px;
   }
 
   .kc-site-header__inner {
@@ -1351,7 +1435,7 @@ body.kc-home-rebuilt::before {
 
   .kc-site-nav a {
     padding: 0.2rem 0;
-    font-size: 0.94rem;
+    font-size: 0.76rem;
     line-height: 1.25;
   }
 
@@ -1362,26 +1446,36 @@ body.kc-home-rebuilt::before {
   .kc-page-hero,
   .kc-page-section,
   .kc-site-footer {
-    padding: 1.05rem;
-    border-radius: 24px;
+    padding: 0.95rem;
+    border-radius: 6px;
   }
 
   .kc-home-hero__content {
-    padding: 0.9rem;
+    padding: 1rem;
   }
 
   .kc-home-kicker {
     margin-bottom: 0.8rem;
     font-size: 0.72rem;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
   }
 
   .kc-home-hero h1 {
     max-width: 100%;
-    font-size: clamp(2.05rem, 10.6vw, 3rem) !important;
-    line-height: 0.96;
+    font-size: clamp(2.6rem, 11vw, 3.4rem) !important;
+    line-height: 0.9;
     overflow-wrap: anywhere;
     word-break: normal;
+  }
+
+  .kc-home-hero__panel,
+  .kc-home-story__quote,
+  .kc-path-card,
+  .kc-home-contact__intro,
+  .kc-home-contact__form,
+  .kc-home-hero__media-note {
+    padding: 0.95rem;
+    border-radius: 4px;
   }
 
   .kc-home-lead {
@@ -1403,8 +1497,8 @@ body.kc-home-rebuilt::before {
   .kc-profile-card__body,
   .kc-practitioner-card__body,
   .kc-store-card__body {
-    padding: 1.1rem;
-    border-radius: 20px;
+    padding: 0.95rem;
+    border-radius: 4px;
   }
 
   .kc-profile-card,

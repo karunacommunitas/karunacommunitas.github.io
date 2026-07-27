@@ -5,6 +5,7 @@ const KC_CONTACT_AJAX_ENDPOINT = `https://formsubmit.co/ajax/${KC_FORMSUBMIT_TOK
 const KC_CONTACT_SUCCESS_PATH = "/contact/thanks/";
 const KC_LOGO_PATH = "/assets/images/branding/KarunaCommunitas_Logo.png";
 const KC_FAVICON_PATH = "/assets/images/branding/favicon.ico";
+const KC_HOME_HERO_IMAGE = "/assets/images/branding/header-background-lakeside-fire-circle.png";
 
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
@@ -433,6 +434,13 @@ function renderHomePage() {
             <li>Integration over spectacle</li>
           </ul>
         </aside>
+        <div class="kc-home-hero__media">
+          <img src="${KC_HOME_HERO_IMAGE}" alt="People gathered in community around a fire by the lake">
+          <div class="kc-home-hero__media-note">
+            <p class="kc-eyebrow">Held in relationship</p>
+            <p>Preparation, integration, and community support offered with warmth, consent, and care.</p>
+          </div>
+        </div>
       </section>
       <section class="kc-home-story">
         <div class="kc-home-section-heading">
