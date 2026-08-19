@@ -1236,7 +1236,6 @@ function renderProductDetailPage() {
         split: true,
         contentMarkup: `
           <p class="kc-store-price">${escapeHtml(price)}</p>
-          <p>This GitHub Pages version keeps the product information visible in a simple static format.</p>
           <div class="kc-inline-actions">
             <a class="kc-home-button kc-home-button--solid" href="/contact">Enquire about this item</a>
             <a class="kc-home-button" href="/store">Back to store</a>
