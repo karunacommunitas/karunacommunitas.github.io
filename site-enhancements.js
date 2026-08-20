@@ -962,13 +962,12 @@ function renderTeamPage() {
       const image = getSectionImage(section);
       const paragraphs = getSectionParagraphs(section);
       const bio = paragraphs.join(" ");
-      const bioSentences = bio.split(/(?<=[.!?])\s+/).filter(Boolean);
-      const summary = bioSentences.slice(0, 3).join(" ");
 
       return {
         name,
         image,
-        bio: summary || bio,
+        paragraphs,
+        bio,
       };
     })
     .filter((member, index, array) => member && array.findIndex((entry) => entry.name === member.name) === index);
@@ -991,7 +990,9 @@ function renderTeamPage() {
                   ${member.image ? `<img src="${escapeHtml(member.image)}" alt="${escapeHtml(member.name)}">` : ""}
                   <div class="kc-profile-card__body">
                     <h2>${escapeHtml(member.name)}</h2>
-                    <p>${escapeHtml(member.bio)}</p>
+                    ${(member.paragraphs.length ? member.paragraphs : [member.bio])
+                      .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+                      .join("")}
                   </div>
                 </article>
               `,
