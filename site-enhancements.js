@@ -6,6 +6,9 @@ const KC_CONTACT_SUCCESS_PATH = "/contact/thanks/";
 const KC_LOGO_PATH = "/assets/images/branding/KarunaCommunitas_Logo.png";
 const KC_FAVICON_PATH = "/assets/images/branding/favicon.ico";
 const KC_HOME_HERO_IMAGE = "/assets/images/branding/header-background-lakeside-fire-circle.png";
+const KC_GA_MEASUREMENT_ID = "G-3ESXVYFGQY";
+
+initializeGoogleAnalytics();
 
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
@@ -120,6 +123,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   enhanceStaticContactForms();
 });
+
+function initializeGoogleAnalytics() {
+  if (!KC_GA_MEASUREMENT_ID || document.querySelector(`script[src*="${KC_GA_MEASUREMENT_ID}"]`)) {
+    return;
+  }
+
+  const analyticsScript = document.createElement("script");
+  analyticsScript.async = true;
+  analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${KC_GA_MEASUREMENT_ID}`;
+  document.head.appendChild(analyticsScript);
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+
+  window.gtag("js", new Date());
+  window.gtag("config", KC_GA_MEASUREMENT_ID);
+}
 
 function ensureSiteFavicon() {
   let favicon = document.querySelector('link[rel="icon"]');
