@@ -821,6 +821,17 @@ body.kc-home-rebuilt::before {
   order: 2;
 }
 
+.kc-detail-hero--profile .kc-page-hero__content > .kc-rich-copy--profile-inline {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.kc-detail-hero--profile .kc-page-hero__content > .kc-rich-copy--profile-inline .sqs-layout > .row {
+  display: block;
+}
+
 .kc-detail-meta {
   margin: 0;
   color: var(--kc-accent);

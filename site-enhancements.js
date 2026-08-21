@@ -1208,15 +1208,12 @@ function renderProfileDetailPage() {
               ${metaItems.map((item) => `<a class="kc-chip" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`).join("")}
             </div>
           ` : ""}
-          <p>Grounded, relational support for preparation, integration, and ongoing therapeutic care.</p>
+          <article class="kc-rich-copy kc-rich-copy--profile kc-rich-copy--profile-inline">
+            ${bodyMarkup}
+          </article>
         `,
         mediaMarkup: heroImage ? `<img src="${escapeHtml(heroImage)}" alt="${escapeHtml(title)}">` : "",
       })}
-      <section class="kc-page-section kc-detail-content">
-        <article class="kc-rich-copy kc-rich-copy--profile">
-          ${bodyMarkup}
-        </article>
-      </section>
       ${getPaginationSectionMarkup(pagination)}
     `,
   });
