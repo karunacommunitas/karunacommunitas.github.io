@@ -1024,9 +1024,19 @@ body.kc-home-rebuilt::before {
   align-items: start;
 }
 
+.kc-practitioner-card__media {
+  display: block;
+  text-decoration: none;
+}
+
 .kc-profile-card,
 .kc-practitioner-card {
   grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
+}
+
+.kc-practitioner-card__body h2 a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .kc-profile-card__body p,

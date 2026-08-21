@@ -7,6 +7,24 @@ const KC_LOGO_PATH = "/assets/images/branding/KarunaCommunitas_Logo.png";
 const KC_FAVICON_PATH = "/assets/images/branding/favicon.ico";
 const KC_HOME_HERO_IMAGE = "/assets/images/branding/header-background-lakeside-fire-circle.png";
 const KC_GA_MEASUREMENT_ID = "G-3ESXVYFGQY";
+const KC_PRACTITIONER_CATEGORIES = {
+  adamdawes: ["UK"],
+  adinadobre: ["UK", "Online", "London"],
+  cathypowell: ["UK", "Online"],
+  damianguy: ["UK", "Online"],
+  emmamcarthur: ["UK", "Online", "Scotland"],
+  federicopodeschi: ["UK", "Wales"],
+  jessicavalentine: ["UK", "Brighton", "London"],
+  josieseydel: ["UK", "Online", "Devon"],
+  katebuchananphillips: ["UK", "London", "Online"],
+  lanacurtis: ["UK", "Online", "London"],
+  linajan: ["UK", "Online", "Wales"],
+  lucypowell: ["UK", "Online", "Bristol"],
+  merrynspence: ["UK", "Online", "USA"],
+  oliverreed: ["UK", "Ashbourne"],
+  raggigandham: ["UK", "Online"],
+  samanthaandreadis: ["UK", "Online", "London"],
+};
 
 initializeGoogleAnalytics();
 
@@ -37,14 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
   simplifySiteChrome();
   body.classList.add("kc-minimal");
 
-  if (path.startsWith("/profiles/")) {
+  if (path.startsWith("/profiles/tag/") || path.startsWith("/profiles/category/")) {
+    body.classList.add("kc-page-practitioner-filter");
+  } else if (path.startsWith("/profiles/")) {
     body.classList.add("kc-page-profile");
   } else if (path.startsWith("/articles/")) {
     body.classList.add("kc-page-article");
   } else if (path.startsWith("/store/p/")) {
     body.classList.add("kc-page-product");
-  } else if (path.startsWith("/profiles/tag/") || path.startsWith("/profiles/category/")) {
-    body.classList.add("kc-page-practitioner-filter");
   } else {
     body.classList.add(`kc-page-${pageMap.get(path) || "generic"}`);
   }
@@ -103,6 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (body.classList.contains("kc-page-practitioners")) {
     renderPractitionersPage();
+  }
+
+  if (body.classList.contains("kc-page-practitioner-filter")) {
+    renderPractitionerFilterPage();
   }
 
   if (body.classList.contains("kc-page-store")) {
@@ -1036,31 +1058,8 @@ function renderPractitionersPage() {
   const introSection = document.querySelector(".page-section");
   const title = getTextContent(introSection?.querySelector("h1")) || "Preparation and Integration Practitioners";
   const paragraphs = getSectionParagraphs(introSection);
-  const cards = Array.from(document.querySelectorAll(".summary-item"))
-    .map((item) => {
-      const titleLink = item.querySelector(".summary-title-link");
-      const name = getTextContent(titleLink);
-      const href = titleLink?.getAttribute("href") || "#";
-      const role = getTextContent(item.querySelector(".summary-excerpt"));
-      const image = item.querySelector("img")?.getAttribute("src") || item.querySelector("img")?.dataset.src || "";
-
-      if (!name) {
-        return "";
-      }
-
-      return `
-        <article class="kc-practitioner-card">
-          ${image ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(name)}">` : ""}
-          <div class="kc-practitioner-card__body">
-            <h2>${escapeHtml(name)}</h2>
-            <p>${escapeHtml(role)}</p>
-            <a class="kc-text-link" href="${escapeHtml(href)}">View profile</a>
-          </div>
-        </article>
-      `;
-    })
-    .filter(Boolean)
-    .join("");
+  const cards = getPractitionerCardsMarkup(Array.from(document.querySelectorAll(".summary-item")));
+  const categoryLinks = getPractitionerCategoryLinksMarkup();
 
   const shell = buildSiteShell({
     currentPath: "/practitioners",
@@ -1072,6 +1071,14 @@ function renderPractitionersPage() {
         contentMarkup: paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join(""),
       })}
       <section class="kc-page-section">
+        <div class="kc-page-section__intro">
+          <p class="kc-eyebrow">Browse By Category</p>
+          <div class="kc-chip-row">
+            ${categoryLinks}
+          </div>
+        </div>
+      </section>
+      <section class="kc-page-section">
         <div class="kc-practitioner-grid">
           ${cards}
         </div>
@@ -1080,6 +1087,107 @@ function renderPractitionersPage() {
   });
 
   replaceWithShell(shell, "kc-practitioners-rebuilt");
+}
+
+function getPractitionerCategoryLinksMarkup() {
+  const categories = Array.from(
+    new Set(
+      Object.values(KC_PRACTITIONER_CATEGORIES).flat(),
+    ),
+  ).sort((left, right) => left.localeCompare(right));
+
+  return categories
+    .map((category) => `<a class="kc-chip" href="/profiles/category/${escapeHtml(category)}">${escapeHtml(category)}</a>`)
+    .join("");
+}
+
+function getPractitionerCardsMarkup(items) {
+  return items
+    .map((item) => {
+      const titleLink = item.querySelector(".summary-title-link, .blog-title a, .image-wrapper");
+      const name = getTextContent(item.querySelector(".summary-title-link, .blog-title a"));
+      const href = titleLink?.getAttribute("href") || "#";
+      const slug = href.replace(/\/+$/, "").split("/").pop() || "";
+      const role = getTextContent(item.querySelector(".summary-excerpt, .blog-excerpt"));
+      const image = item.querySelector("img")?.getAttribute("src") || item.querySelector("img")?.dataset.src || "";
+      const categories = KC_PRACTITIONER_CATEGORIES[slug] || [];
+
+      if (!name) {
+        return "";
+      }
+
+      return `
+        <article class="kc-practitioner-card">
+          ${image ? `<a class="kc-practitioner-card__media" href="${escapeHtml(href)}"><img src="${escapeHtml(image)}" alt="${escapeHtml(name)}"></a>` : ""}
+          <div class="kc-practitioner-card__body">
+            <h2><a class="kc-text-link" href="${escapeHtml(href)}">${escapeHtml(name)}</a></h2>
+            ${categories.length ? `
+              <div class="kc-chip-row">
+                ${categories.map((category) => `<a class="kc-chip" href="/profiles/category/${escapeHtml(category)}">${escapeHtml(category)}</a>`).join("")}
+              </div>
+            ` : ""}
+            <p>${escapeHtml(role)}</p>
+            <a class="kc-text-link" href="${escapeHtml(href)}">View profile</a>
+          </div>
+        </article>
+      `;
+    })
+    .filter(Boolean)
+    .join("");
+}
+
+function getSurnameSortKey(name) {
+  const parts = (name || "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (!parts.length) {
+    return "";
+  }
+
+  return `${parts[parts.length - 1].toLowerCase()} ${parts.slice(0, -1).join(" ").toLowerCase()}`.trim();
+}
+
+function renderPractitionerFilterPage() {
+  if (document.querySelector(".kc-practitioner-filter-shell")) {
+    return;
+  }
+
+  const path = window.location.pathname.replace(/\/+$/, "");
+  const isCategory = path.startsWith("/profiles/category/");
+  const slug = decodeURIComponent(path.split("/").pop() || "");
+  const title = slug.replace(/\+/g, " ");
+  const items = Array.from(document.querySelectorAll(".blog-item.entry--list"))
+    .sort((a, b) => {
+      const nameA = getTextContent(a.querySelector(".blog-title a"));
+      const nameB = getTextContent(b.querySelector(".blog-title a"));
+      return getSurnameSortKey(nameA).localeCompare(getSurnameSortKey(nameB));
+    });
+  const cards = getPractitionerCardsMarkup(items);
+  const eyebrow = isCategory ? "Practitioner Region" : "Practitioner Focus";
+  const intro = isCategory
+    ? `Browse practitioners listed under ${title}.`
+    : `Browse practitioners linked to ${title}.`;
+
+  const shell = buildSiteShell({
+    currentPath: "/practitioners",
+    shellClass: "kc-practitioner-filter-shell",
+    mainContent: `
+      ${getPageHeroMarkup({
+        eyebrow,
+        title,
+        contentMarkup: `<p>${escapeHtml(intro)}</p>`,
+      })}
+      <section class="kc-page-section">
+        <div class="kc-practitioner-grid">
+          ${cards}
+        </div>
+      </section>
+    `,
+  });
+
+  replaceWithShell(shell, "kc-practitioner-filter-rebuilt");
 }
 
 function renderStorePage() {
