@@ -3,9 +3,11 @@ const KC_FORMSUBMIT_TOKEN = "8319f8c5d70d6fc0cf48ca477f50f6fc";
 const KC_CONTACT_ENDPOINT = `https://formsubmit.co/${KC_FORMSUBMIT_TOKEN}`;
 const KC_CONTACT_AJAX_ENDPOINT = `https://formsubmit.co/ajax/${KC_FORMSUBMIT_TOKEN}`;
 const KC_CONTACT_SUCCESS_PATH = "/contact/thanks/";
+const KC_SITE_URL = "https://www.karunacommunitas.com";
 const KC_LOGO_PATH = "/assets/images/branding/KarunaCommunitas_Logo.png";
 const KC_FAVICON_PATH = "/assets/images/branding/favicon.ico";
 const KC_HOME_HERO_IMAGE = "/assets/images/branding/header-background-lakeside-fire-circle.png";
+const KC_DEFAULT_SOCIAL_IMAGE = `${KC_SITE_URL}${KC_HOME_HERO_IMAGE}`;
 const KC_GA_MEASUREMENT_ID = "G-3ESXVYFGQY";
 const KC_PRACTITIONER_CATEGORIES = {
   adamdawes: ["UK"],
@@ -144,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   enhanceStaticContactForms();
+  applySeo();
 });
 
 function initializeGoogleAnalytics() {
@@ -176,6 +179,364 @@ function ensureSiteFavicon() {
 
   favicon.type = "image/x-icon";
   favicon.href = KC_FAVICON_PATH;
+}
+
+function applySeo() {
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  const absoluteUrl = getCanonicalUrl(path);
+  const title = getSeoTitle(path);
+  const description = getSeoDescription(path);
+  const image = getSeoImage();
+  const robots = getSeoRobots(path);
+  const seoType = getSeoType(path);
+
+  document.title = title;
+  setLinkTag("canonical", absoluteUrl);
+  setMetaTag("name", "description", description);
+  setMetaTag("name", "robots", robots);
+  setMetaTag("property", "og:site_name", "Karuna Communitas");
+  setMetaTag("property", "og:title", title);
+  setMetaTag("property", "og:description", description);
+  setMetaTag("property", "og:url", absoluteUrl);
+  setMetaTag("property", "og:type", seoType);
+  setMetaTag("property", "og:image", image);
+  setMetaTag("name", "twitter:card", "summary_large_image");
+  setMetaTag("name", "twitter:title", title);
+  setMetaTag("name", "twitter:description", description);
+  setMetaTag("name", "twitter:url", absoluteUrl);
+  setMetaTag("name", "twitter:image", image);
+  removeStaleSeoMeta();
+  setStructuredData(getStructuredData(path, { title, description, absoluteUrl, image, seoType }));
+}
+
+function getCanonicalUrl(path) {
+  if (path === "/") {
+    return KC_SITE_URL;
+  }
+
+  return `${KC_SITE_URL}${path}/`;
+}
+
+function getSeoTitle(path) {
+  if (document.body.classList.contains("kc-page-home")) {
+    return "Karuna Communitas | Psychedelic Preparation, Integration, and Community Care";
+  }
+
+  if (document.body.classList.contains("kc-page-about")) {
+    return "About Karuna Communitas | Ethical Psychedelic Support and Community Care";
+  }
+
+  if (document.body.classList.contains("kc-page-team")) {
+    return "Team | Karuna Communitas";
+  }
+
+  if (document.body.classList.contains("kc-page-practitioners")) {
+    return "Practitioners | Psychedelic Preparation and Integration Support";
+  }
+
+  if (document.body.classList.contains("kc-page-practitioner-filter")) {
+    const title = getTextContent(document.querySelector(".kc-page-hero h1")) || "Practitioners";
+    const prefix = path.startsWith("/profiles/category/") ? "Practitioners in" : "Practitioners for";
+    return `${prefix} ${title} | Karuna Communitas`;
+  }
+
+  if (document.body.classList.contains("kc-page-profile")) {
+    const name = getTextContent(document.querySelector(".kc-page-hero h1")) || "Practitioner Profile";
+    return `${name} | Practitioner Profile | Karuna Communitas`;
+  }
+
+  if (document.body.classList.contains("kc-page-articles")) {
+    return "Articles | Karuna Communitas";
+  }
+
+  if (document.body.classList.contains("kc-page-article")) {
+    const heading = getTextContent(document.querySelector(".kc-page-hero h1")) || "Article";
+    return `${heading} | Karuna Communitas`;
+  }
+
+  if (document.body.classList.contains("kc-page-resources")) {
+    return "Resources | Preparation, Integration, and Grounding Support";
+  }
+
+  if (path.startsWith("/resources/")) {
+    const heading = getTextContent(document.querySelector(".kc-page-hero h1")) || "Resource";
+    return `${heading} | Resources | Karuna Communitas`;
+  }
+
+  if (document.body.classList.contains("kc-page-contact")) {
+    return "Contact | Karuna Communitas";
+  }
+
+  if (document.body.classList.contains("kc-page-store")) {
+    return "Store | Karuna Communitas";
+  }
+
+  if (document.body.classList.contains("kc-page-product")) {
+    const heading = getTextContent(document.querySelector(".kc-page-hero h1")) || "Product";
+    return `${heading} | Store | Karuna Communitas`;
+  }
+
+  if (path === "/contact/thanks") {
+    return "Thank You | Karuna Communitas";
+  }
+
+  if (path === "/cart") {
+    return "Cart | Karuna Communitas";
+  }
+
+  return "Karuna Communitas";
+}
+
+function getSeoDescription(path) {
+  const staticDescriptions = {
+    "/": "Karuna Communitas offers grounded psychedelic preparation, integration, education, and community-rooted support.",
+    "/about": "Learn about Karuna Communitas and our community-rooted approach to ethical psychedelic preparation, integration, and care.",
+    "/team": "Meet the team behind Karuna Communitas and our commitment to compassionate, ethical psychedelic support.",
+    "/practitioners": "Browse Karuna Communitas practitioners offering preparation, integration, trauma-informed support, and related therapeutic care.",
+    "/articles": "Read articles from the Karuna Communitas network on healing, community, integration, and psychedelic support.",
+    "/resources": "Explore practical resources for psychedelic preparation, integration, grounding, and supportive self-reflection.",
+    "/resources/preparation-tips": "Practical preparation tips to help you approach psychedelic experiences with intention, safety, and support.",
+    "/resources/integration-tips": "Helpful integration guidance for making sense of psychedelic experiences and bringing insight into daily life.",
+    "/resources/grounding-exercises": "Grounding exercises and simple practices to support nervous system regulation and post-experience integration.",
+    "/contact": "Contact Karuna Communitas to ask questions, explore collaboration, or connect with our community.",
+    "/store": "Browse simple Karuna Communitas offerings that help support the wider work.",
+    "/cart": "Shopping cart for Karuna Communitas store items.",
+    "/contact/thanks": "Thank you for contacting Karuna Communitas.",
+  };
+
+  if (staticDescriptions[path]) {
+    return staticDescriptions[path];
+  }
+
+  if (document.body.classList.contains("kc-page-practitioner-filter")) {
+    const heading = getTextContent(document.querySelector(".kc-page-hero h1")) || "this category";
+    const count = document.querySelectorAll(".kc-practitioner-card").length;
+    if (path.startsWith("/profiles/category/")) {
+      return `Browse ${count ? `${count} ` : ""}Karuna Communitas practitioners in ${heading} offering preparation, integration, and related support.`;
+    }
+
+    return `Browse Karuna Communitas practitioners connected to ${heading}, including preparation, integration, and therapeutic support.`;
+  }
+
+  if (document.body.classList.contains("kc-page-profile")) {
+    const description = getFirstMeaningfulParagraph(".kc-rich-copy--profile-inline p")
+      || getTextContent(document.querySelector(".kc-detail-hero .kc-chip-row + .kc-rich-copy p"))
+      || "Explore this practitioner profile within the Karuna Communitas network.";
+    return truncateDescription(description);
+  }
+
+  if (document.body.classList.contains("kc-page-article")) {
+    const description = getFirstMeaningfulParagraph(".kc-rich-copy p")
+      || "Read an article from the Karuna Communitas network on healing, community, and psychedelic care.";
+    return truncateDescription(description);
+  }
+
+  if (document.body.classList.contains("kc-page-product")) {
+    const description = getFirstMeaningfulParagraph(".kc-rich-copy p")
+      || "Explore this Karuna Communitas product.";
+    return truncateDescription(description);
+  }
+
+  const heroDescription = getFirstMeaningfulParagraph(".kc-page-hero p:not(.kc-eyebrow):not(.kc-detail-meta), .kc-home-main p");
+  return truncateDescription(heroDescription || "Karuna Communitas offers compassionate, community-rooted psychedelic support.");
+}
+
+function getSeoImage() {
+  const heroImage = document.querySelector(".kc-page-hero__media img, .kc-home-hero__media img, .kc-practitioner-card img, .kc-store-card img");
+  const src = heroImage?.getAttribute("src") || heroImage?.dataset.src || "";
+
+  if (!src) {
+    return KC_DEFAULT_SOCIAL_IMAGE;
+  }
+
+  if (/^https?:\/\//i.test(src)) {
+    return src;
+  }
+
+  return `${KC_SITE_URL}${src.startsWith("/") ? src : `/${src}`}`;
+}
+
+function getSeoRobots(path) {
+  if (path === "/cart" || path === "/contact/thanks" || path.startsWith("/profiles/tag/")) {
+    return "noindex,follow";
+  }
+
+  return "index,follow";
+}
+
+function getSeoType(path) {
+  if (document.body.classList.contains("kc-page-profile")) {
+    return "profile";
+  }
+
+  if (document.body.classList.contains("kc-page-article")) {
+    return "article";
+  }
+
+  if (document.body.classList.contains("kc-page-product")) {
+    return "product";
+  }
+
+  if (document.body.classList.contains("kc-page-practitioners")
+    || document.body.classList.contains("kc-page-practitioner-filter")
+    || document.body.classList.contains("kc-page-articles")
+    || document.body.classList.contains("kc-page-resources")) {
+    return "website";
+  }
+
+  return "website";
+}
+
+function setMetaTag(attributeName, attributeValue, content) {
+  if (!content) {
+    return;
+  }
+
+  let tag = document.head.querySelector(`meta[${attributeName}="${attributeValue}"]`);
+
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute(attributeName, attributeValue);
+    document.head.appendChild(tag);
+  }
+
+  tag.setAttribute("content", content);
+}
+
+function setLinkTag(rel, href) {
+  let tag = document.head.querySelector(`link[rel="${rel}"]`);
+
+  if (!tag) {
+    tag = document.createElement("link");
+    tag.rel = rel;
+    document.head.appendChild(tag);
+  }
+
+  tag.href = href;
+}
+
+function getFirstMeaningfulParagraph(selector) {
+  const paragraphs = Array.from(document.querySelectorAll(selector))
+    .map((node) => getTextContent(node))
+    .filter(Boolean);
+
+  return paragraphs.find((text) => text.length > 40) || paragraphs[0] || "";
+}
+
+function truncateDescription(text, maxLength = 160) {
+  const clean = String(text || "").replace(/\s+/g, " ").trim();
+
+  if (clean.length <= maxLength) {
+    return clean;
+  }
+
+  const shortened = clean.slice(0, maxLength - 1);
+  return `${shortened.slice(0, shortened.lastIndexOf(" ")).trim()}.`;
+}
+
+function removeStaleSeoMeta() {
+  document.head
+    .querySelectorAll('meta[property="og:latitude"], meta[property="og:longitude"], meta[property="og:locality"]')
+    .forEach((node) => node.remove());
+}
+
+function setStructuredData(payload) {
+  document.head.querySelectorAll('script[data-kc-seo="structured-data"]').forEach((node) => node.remove());
+
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.dataset.kcSeo = "structured-data";
+  script.textContent = JSON.stringify(payload);
+  document.head.appendChild(script);
+}
+
+function getStructuredData(path, { title, description, absoluteUrl, image }) {
+  const graph = [
+    {
+      "@type": "Organization",
+      "@id": `${KC_SITE_URL}/#organization`,
+      name: "Karuna Communitas",
+      url: KC_SITE_URL,
+      logo: `${KC_SITE_URL}${KC_LOGO_PATH}`,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${KC_SITE_URL}/#website`,
+      url: KC_SITE_URL,
+      name: "Karuna Communitas",
+      publisher: { "@id": `${KC_SITE_URL}/#organization` },
+    },
+  ];
+
+  const webpage = {
+    "@type": "WebPage",
+    "@id": `${absoluteUrl}#webpage`,
+    url: absoluteUrl,
+    name: title,
+    description,
+    isPartOf: { "@id": `${KC_SITE_URL}/#website` },
+    primaryImageOfPage: image,
+  };
+
+  if (document.body.classList.contains("kc-page-home")) {
+    graph.push({
+      "@type": "WebPage",
+      "@id": `${KC_SITE_URL}/#home`,
+      url: absoluteUrl,
+      name: title,
+      description,
+      about: { "@id": `${KC_SITE_URL}/#organization` },
+    });
+  } else if (document.body.classList.contains("kc-page-profile")) {
+    const name = getTextContent(document.querySelector(".kc-page-hero h1")) || title;
+    const categories = Array.from(document.querySelectorAll(".kc-detail-hero .kc-chip"))
+      .map((node) => getTextContent(node))
+      .filter(Boolean);
+    graph.push({
+      "@type": "Person",
+      "@id": `${absoluteUrl}#person`,
+      name,
+      description,
+      image,
+      url: absoluteUrl,
+      knowsAbout: categories,
+      memberOf: {
+        "@type": "Organization",
+        name: "Karuna Communitas",
+        url: KC_SITE_URL,
+      },
+    });
+    webpage.mainEntity = { "@id": `${absoluteUrl}#person` };
+  } else if (document.body.classList.contains("kc-page-article")) {
+    const publishedTime = document.querySelector('meta[itemprop="datePublished"]')?.getAttribute("content") || undefined;
+    graph.push({
+      "@type": "Article",
+      "@id": `${absoluteUrl}#article`,
+      headline: getTextContent(document.querySelector(".kc-page-hero h1")) || title,
+      description,
+      image,
+      author: {
+        "@type": "Organization",
+        name: "Karuna Communitas",
+      },
+      publisher: { "@id": `${KC_SITE_URL}/#organization` },
+      datePublished: publishedTime,
+      mainEntityOfPage: absoluteUrl,
+    });
+    webpage.mainEntity = { "@id": `${absoluteUrl}#article` };
+  } else if (document.body.classList.contains("kc-page-practitioners")
+    || document.body.classList.contains("kc-page-practitioner-filter")
+    || document.body.classList.contains("kc-page-articles")
+    || document.body.classList.contains("kc-page-resources")) {
+    webpage["@type"] = "CollectionPage";
+  }
+
+  graph.push(webpage);
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": graph,
+  };
 }
 
 function normalizeBodyClasses(body) {
