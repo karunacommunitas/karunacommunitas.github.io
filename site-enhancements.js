@@ -31,7 +31,7 @@ const KC_PRACTITIONER_CATEGORIES = {
 initializeGoogleAnalytics();
 
 document.addEventListener("DOMContentLoaded", () => {
-  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  const path = decodeURIComponent(window.location.pathname).replace(/\/+$/, "") || "/";
   const pageMap = new Map([
     ["/", "home"],
     ["/about", "about"],
@@ -957,7 +957,7 @@ function renderAboutPage() {
       ${getPageHeroMarkup({
         eyebrow: "About",
         title: introTitle,
-        split: true,
+        split: false,
         contentMarkup: introParagraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join(""),
         mediaMarkup: introImage ? `<img src="${escapeHtml(introImage)}" alt="Karuna Communitas community">` : "",
       })}
@@ -1613,11 +1613,23 @@ function renderArticleDetailPage() {
     return;
   }
 
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
   const title = getTextContent(wrapper.querySelector(".entry-title")) || "Article";
   const date = getTextContent(wrapper.querySelector(".blog-meta-item--date"));
+  const author = document.querySelector('meta[itemprop="author"]')?.getAttribute("content") || "Karuna Communitas";
   const bodyMarkup = getBodyMarkup(wrapper);
-  const heroImage = getBodyImage(wrapper);
   const pagination = getPaginationData();
+  const authorMarkup = path === "/articles/ibogaine-and-brain-injury-the-evidence-continues-to-build"
+    ? `<p>Written by <a href="/profiles/oliverreed">${escapeHtml(author)}</a></p>`
+    : path === "/articles/holding-space-on-a-gathering-groups-retreat"
+      ? "<p>Written by Faye Vallance</p>"
+      : path === "/articles/communitas-is-healing"
+        ? "<p>Written by Faye Vallance</p>"
+        : path === "/articles/the-origins-of-karuna-communitas"
+          ? `<p>Written by <a href="/profiles/damianguy">${escapeHtml(author)}</a></p>`
+          : path === "/articles/Blog Post Title One-kg97n"
+            ? `<p>Written by <a href="/profiles/damianguy">${escapeHtml(author)}</a></p>`
+      : "";
 
   const shell = buildSiteShell({
     currentPath: "/articles",
@@ -1627,12 +1639,11 @@ function renderArticleDetailPage() {
         eyebrow: "Article",
         title,
         heroClass: "kc-detail-hero",
-        split: true,
+        split: false,
         contentMarkup: `
           <p class="kc-detail-meta">${escapeHtml(date)}</p>
-          <p>Long-form reflections from the Karuna Communitas network on healing, communitas, and grounded psychedelic care.</p>
+          ${authorMarkup}
         `,
-        mediaMarkup: heroImage ? `<img src="${escapeHtml(heroImage)}" alt="${escapeHtml(title)}">` : "",
       })}
       <section class="kc-page-section kc-detail-content">
         <article class="kc-rich-copy">
