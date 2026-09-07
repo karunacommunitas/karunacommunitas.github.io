@@ -57,4 +57,4 @@ Disallow:/*&format=ical
 Disallow:/*?reversePaginate=*
 Disallow:/*&reversePaginate=*
 
-Sitemap: https://www.karunacommunitas.com/sitemap.xml
+Sitemap: https://karunacommunitas.com/sitemap.xml

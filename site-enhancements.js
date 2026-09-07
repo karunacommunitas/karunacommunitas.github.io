@@ -3,7 +3,7 @@ const KC_FORMSUBMIT_TOKEN = "8319f8c5d70d6fc0cf48ca477f50f6fc";
 const KC_CONTACT_ENDPOINT = `https://formsubmit.co/${KC_FORMSUBMIT_TOKEN}`;
 const KC_CONTACT_AJAX_ENDPOINT = `https://formsubmit.co/ajax/${KC_FORMSUBMIT_TOKEN}`;
 const KC_CONTACT_SUCCESS_PATH = "/contact/thanks/";
-const KC_SITE_URL = "https://www.karunacommunitas.com";
+const KC_SITE_URL = "https://karunacommunitas.com";
 const KC_LOGO_PATH = "/assets/images/branding/KarunaCommunitas_Logo.png";
 const KC_FAVICON_PATH = "/assets/images/branding/favicon.ico";
 const KC_HOME_HERO_IMAGE = "/assets/images/branding/header-background-lakeside-fire-circle.png";
@@ -145,9 +145,28 @@ document.addEventListener("DOMContentLoaded", () => {
     renderProductDetailPage();
   }
 
+  normalizeInternalLinks();
   enhanceStaticContactForms();
   applySeo();
 });
+
+function normalizeInternalLinks() {
+  document.querySelectorAll('a[href^="/"]').forEach((link) => {
+    const href = link.getAttribute("href");
+
+    if (!href || href === "/") {
+      return;
+    }
+
+    const match = href.match(/^([^?#]*)(.*)$/);
+    const pathname = match?.[1] || href;
+    const suffix = match?.[2] || "";
+
+    if (!pathname.endsWith("/") && !/\.[a-z0-9]{2,5}$/i.test(pathname)) {
+      link.setAttribute("href", `${pathname}/${suffix}`);
+    }
+  });
+}
 
 function initializeGoogleAnalytics() {
   if (!KC_GA_MEASUREMENT_ID || document.querySelector(`script[src*="${KC_GA_MEASUREMENT_ID}"]`)) {
@@ -606,11 +625,11 @@ function buildSiteShell({ currentPath, shellClass = "", mainContent }) {
         <p>A living network for compassionate, ethical, community-rooted transformation.</p>
       </div>
       <div class="kc-site-footer__links">
-        <a href="/about">About</a>
-        <a href="/practitioners">Practitioners</a>
-        <a href="/resources">Resources</a>
-        <a href="/articles">Articles</a>
-        <a href="/contact">Contact</a>
+        <a href="/about/">About</a>
+        <a href="/practitioners/">Practitioners</a>
+        <a href="/resources/">Resources</a>
+        <a href="/articles/">Articles</a>
+        <a href="/contact/">Contact</a>
       </div>
       <div class="kc-site-footer__social"></div>
     </footer>
@@ -634,17 +653,17 @@ function buildSiteShell({ currentPath, shellClass = "", mainContent }) {
 function getPrimaryNavMarkup(currentPath) {
   const items = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/team", label: "Team" },
-    { href: "/practitioners", label: "Practitioners" },
-    { href: "/resources", label: "Resources" },
-    { href: "/articles", label: "Articles" },
-    { href: "/store", label: "Store" },
-    { href: "/contact", label: "Contact" },
+    { href: "/about/", label: "About" },
+    { href: "/team/", label: "Team" },
+    { href: "/practitioners/", label: "Practitioners" },
+    { href: "/resources/", label: "Resources" },
+    { href: "/articles/", label: "Articles" },
+    { href: "/store/", label: "Store" },
+    { href: "/contact/", label: "Contact" },
   ];
 
   return items
-    .map(({ href, label }) => `<a href="${href}"${href === currentPath ? ' aria-current="page"' : ""}>${label}</a>`)
+    .map(({ href, label }) => `<a href="${href}"${href.replace(/\/+$/, "") === currentPath.replace(/\/+$/, "") ? ' aria-current="page"' : ""}>${label}</a>`)
     .join("");
 }
 
@@ -825,8 +844,8 @@ function renderHomePage() {
           <h1>Compassionate pathways into psychedelic care.</h1>
           <p class="kc-home-lead">${heroCopy}</p>
           <div class="kc-home-actions">
-            <a class="kc-home-button kc-home-button--solid" href="${heroButton?.getAttribute("href") || "/about"}">${heroButton?.textContent.trim() || "Learn more"}</a>
-            <a class="kc-home-button" href="/contact">Get in touch</a>
+            <a class="kc-home-button kc-home-button--solid" href="${heroButton?.getAttribute("href") || "/about/"}">${heroButton?.textContent.trim() || "Learn more"}</a>
+            <a class="kc-home-button" href="/contact/">Get in touch</a>
           </div>
         </div>
         <aside class="kc-home-hero__panel">
@@ -873,15 +892,15 @@ function renderHomePage() {
           <h2>Ways into the community</h2>
         </div>
         <div class="kc-home-path-grid">
-          <a class="kc-path-card" href="/practitioners">
+          <a class="kc-path-card" href="/practitioners/">
             <h3>Meet practitioners</h3>
             <p>Browse therapists and guides offering grounded, integrative support.</p>
           </a>
-          <a class="kc-path-card" href="/articles">
+          <a class="kc-path-card" href="/articles/">
             <h3>Read articles</h3>
             <p>Explore writing on healing, community, and accessible psychedelic care.</p>
           </a>
-          <a class="kc-path-card" href="/about">
+          <a class="kc-path-card" href="/about/">
             <h3>Learn the ethos</h3>
             <p>Understand the social responsibility and values shaping this network.</p>
           </a>
@@ -980,8 +999,8 @@ function renderAboutPage() {
           <p>We are shaping a slower, more relational alternative to transactional care. If that resonates, we’d love to hear from you.</p>
         </div>
         <div class="kc-inline-actions">
-          <a class="kc-home-button kc-home-button--solid" href="/contact">Contact us</a>
-          <a class="kc-home-button" href="/articles">Read our writing</a>
+          <a class="kc-home-button kc-home-button--solid" href="/contact/">Contact us</a>
+          <a class="kc-home-button" href="/articles/">Read our writing</a>
         </div>
       </section>
     `,
@@ -1062,15 +1081,15 @@ function renderResourcesPage() {
       })}
       <section class="kc-page-section">
         <div class="kc-home-path-grid">
-          <a class="kc-path-card" href="/resources/preparation-tips">
+          <a class="kc-path-card" href="/resources/preparation-tips/">
             <h2>Preparation Tips</h2>
             <p>Support for intention-setting, practical planning, emotional honesty, and creating the conditions for safety.</p>
           </a>
-          <a class="kc-path-card" href="/resources/integration-tips">
+          <a class="kc-path-card" href="/resources/integration-tips/">
             <h2>Integration Tips</h2>
             <p>Support for reflection, pacing, embodiment, and turning insight into meaningful change in everyday life.</p>
           </a>
-          <a class="kc-path-card" href="/resources/grounding-exercises">
+          <a class="kc-path-card" href="/resources/grounding-exercises/">
             <h2>Grounding Exercises</h2>
             <p>Simple practices for returning to the body, the senses, and the present moment when things feel intense or unsteady.</p>
           </a>
@@ -1082,7 +1101,7 @@ function renderResourcesPage() {
           <h2>Looking for personal support?</h2>
           <p>If you would like one-to-one preparation or integration support, you can explore practitioners in the wider Karuna Communitas network.</p>
           <div class="kc-inline-actions">
-            <a class="kc-home-button kc-home-button--solid" href="/practitioners">Find a practitioner</a>
+            <a class="kc-home-button kc-home-button--solid" href="/practitioners/">Find a practitioner</a>
           </div>
         </div>
       </section>
@@ -1108,7 +1127,7 @@ function renderPreparationTipsPage() {
           <p>Creating the conditions for safety, clarity, and intention before an experience can be just as important as the experience itself.</p>
           <p>These tips and techniques have been collated from the Karuna Communitas Network.</p>
           <div class="kc-inline-actions">
-            <a class="kc-home-button" href="/resources">Back to resources</a>
+            <a class="kc-home-button" href="/resources/">Back to resources</a>
           </div>
         `,
       })}
@@ -1182,8 +1201,8 @@ function renderPreparationTipsPage() {
           <h2>When the experience is over, integration begins.</h2>
           <p>Making meaning from what happened often takes time, gentleness, and support.</p>
           <div class="kc-inline-actions">
-            <a class="kc-home-button kc-home-button--solid" href="/resources/integration-tips">Explore integration tips</a>
-            <a class="kc-home-button" href="/practitioners">Find a practitioner</a>
+            <a class="kc-home-button kc-home-button--solid" href="/resources/integration-tips/">Explore integration tips</a>
+            <a class="kc-home-button" href="/practitioners/">Find a practitioner</a>
           </div>
         </div>
       </section>
@@ -1209,7 +1228,7 @@ function renderIntegrationTipsPage() {
           <p>Integration is the process of making space for reflection, meaning, and grounded next steps after an experience.</p>
           <p>These tips and techniques have been collated from the Karuna Communitas Network.</p>
           <div class="kc-inline-actions">
-            <a class="kc-home-button" href="/resources">Back to resources</a>
+            <a class="kc-home-button" href="/resources/">Back to resources</a>
           </div>
         `,
       })}
@@ -1265,7 +1284,7 @@ function renderIntegrationTipsPage() {
           <h2>You do not have to make sense of everything alone.</h2>
           <p>If you are looking for grounded one-to-one support, the Karuna Communitas practitioner network may be a good next step.</p>
           <div class="kc-inline-actions">
-            <a class="kc-home-button kc-home-button--solid" href="/practitioners">Find a practitioner</a>
+            <a class="kc-home-button kc-home-button--solid" href="/practitioners/">Find a practitioner</a>
           </div>
         </div>
       </section>
@@ -1291,7 +1310,7 @@ function renderGroundingExercisesPage() {
           <p>Grounding practices can help bring attention back to the body, the senses, and the immediate environment when emotions, memories, or stimulation feel too strong.</p>
           <p>These tips and techniques have been collated from the Karuna Communitas Network.</p>
           <div class="kc-inline-actions">
-            <a class="kc-home-button" href="/resources">Back to resources</a>
+            <a class="kc-home-button" href="/resources/">Back to resources</a>
           </div>
         `,
       })}
@@ -1337,8 +1356,8 @@ function renderGroundingExercisesPage() {
           <h2>If grounding feels hard, more support may be needed.</h2>
           <p>Sometimes intensity, dissociation, or distress can be difficult to manage alone. Reaching out for relational or professional support can be part of the grounding process too.</p>
           <div class="kc-inline-actions">
-            <a class="kc-home-button kc-home-button--solid" href="/practitioners">Find a practitioner</a>
-            <a class="kc-home-button" href="/resources/integration-tips">Explore integration tips</a>
+            <a class="kc-home-button kc-home-button--solid" href="/practitioners/">Find a practitioner</a>
+            <a class="kc-home-button" href="/resources/integration-tips/">Explore integration tips</a>
           </div>
         </div>
       </section>
@@ -1458,7 +1477,7 @@ function getPractitionerCategoryLinksMarkup() {
   ).sort((left, right) => left.localeCompare(right));
 
   return categories
-    .map((category) => `<a class="kc-chip" href="/profiles/category/${escapeHtml(category)}">${escapeHtml(category)}</a>`)
+    .map((category) => `<a class="kc-chip" href="/profiles/category/${escapeHtml(category)}/">${escapeHtml(category)}</a>`)
     .join("");
 }
 
@@ -1484,7 +1503,7 @@ function getPractitionerCardsMarkup(items) {
             <h2><a class="kc-text-link" href="${escapeHtml(href)}">${escapeHtml(name)}</a></h2>
             ${categories.length ? `
               <div class="kc-chip-row">
-                ${categories.map((category) => `<a class="kc-chip" href="/profiles/category/${escapeHtml(category)}">${escapeHtml(category)}</a>`).join("")}
+                ${categories.map((category) => `<a class="kc-chip" href="/profiles/category/${escapeHtml(category)}/">${escapeHtml(category)}</a>`).join("")}
               </div>
             ` : ""}
             <p>${escapeHtml(role)}</p>
@@ -1620,15 +1639,15 @@ function renderArticleDetailPage() {
   const bodyMarkup = getBodyMarkup(wrapper);
   const pagination = getPaginationData();
   const authorMarkup = path === "/articles/ibogaine-and-brain-injury-the-evidence-continues-to-build"
-    ? `<p>Written by <a href="/profiles/oliverreed">${escapeHtml(author)}</a></p>`
+    ? `<p>Written by <a href="/profiles/oliverreed/">${escapeHtml(author)}</a></p>`
     : path === "/articles/holding-space-on-a-gathering-groups-retreat"
       ? "<p>Written by Faye Vallance</p>"
       : path === "/articles/communitas-is-healing"
         ? "<p>Written by Faye Vallance</p>"
         : path === "/articles/the-origins-of-karuna-communitas"
-          ? `<p>Written by <a href="/profiles/damianguy">${escapeHtml(author)}</a></p>`
+          ? `<p>Written by <a href="/profiles/damianguy/">${escapeHtml(author)}</a></p>`
           : path === "/articles/Blog Post Title One-kg97n"
-            ? `<p>Written by <a href="/profiles/damianguy">${escapeHtml(author)}</a></p>`
+            ? `<p>Written by <a href="/profiles/damianguy/">${escapeHtml(author)}</a></p>`
       : "";
 
   const shell = buildSiteShell({
@@ -1737,8 +1756,8 @@ function renderProductDetailPage() {
         contentMarkup: `
           <p class="kc-store-price">${escapeHtml(price)}</p>
           <div class="kc-inline-actions">
-            <a class="kc-home-button kc-home-button--solid" href="/contact">Enquire about this item</a>
-            <a class="kc-home-button" href="/store">Back to store</a>
+            <a class="kc-home-button kc-home-button--solid" href="/contact/">Enquire about this item</a>
+            <a class="kc-home-button" href="/store/">Back to store</a>
           </div>
         `,
         mediaMarkup: image ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(title)}">` : "",
