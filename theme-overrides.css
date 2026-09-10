@@ -1541,3 +1541,23 @@ body.kc-home-rebuilt::before {
     position: static;
   }
 }
+
+/* Integration circles: chronological event cards, sharing the site's warm palette. */
+.kc-circles-shell [hidden] { display: none !important; }
+.kc-circles-shell .kc-page-hero { gap: 0.8rem; }
+.kc-circle-lead { font-size: clamp(1.2rem, 2.2vw, 1.65rem); }
+.kc-circle-list { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
+.kc-circle-event { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 2rem; padding: clamp(1rem, 2.5vw, 2rem); border: 1px solid rgba(77, 54, 45, 0.14); border-radius: 8px; background: rgba(255, 251, 246, 0.65); }
+.kc-circle-date { display: flex; flex-direction: column; align-items: center; align-self: start; gap: 0.4rem; padding: 1.25rem 0.5rem; border-block: 1px solid rgba(77, 54, 45, 0.2); color: var(--kc-ink-soft); text-align: center; }
+.kc-circle-date strong { font-size: 4.5rem; line-height: 1.1; font-weight: 400; color: var(--kc-ink); }
+.kc-circle-date span { font-size: 0.85rem; }
+.kc-circle-details h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); margin-top: 0.5rem; }
+.kc-circle-details p { max-width: 46rem; }
+.kc-circle-booking { margin-top: 0.5rem; }
+#upcoming-circles { scroll-margin-top: 1rem; }
+@media (max-width: 640px) {
+  .kc-circle-event { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .kc-circle-date { flex-direction: row; justify-content: flex-start; gap: 0.75rem; padding: 0.6rem 0; }
+  .kc-circle-date strong { font-size: 2rem; }
+  .kc-circle-booking { max-width: 100%; white-space: normal; text-align: center; }
+}

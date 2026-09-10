@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ["/about", "about"],
     ["/articles", "articles"],
     ["/resources", "resources"],
+    ["/integration-circles", "integration-circles"],
     ["/resources/preparation-tips", "preparation-tips"],
     ["/resources/integration-tips", "integration-tips"],
     ["/resources/grounding-exercises", "grounding-exercises"],
@@ -99,6 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (body.classList.contains("kc-page-articles")) {
     renderArticlesPage();
+  }
+
+  if (body.classList.contains("kc-page-integration-circles")) {
+    renderIntegrationCirclesPage();
   }
 
   if (body.classList.contains("kc-page-resources")) {
@@ -273,6 +278,10 @@ function getSeoTitle(path) {
     return `${heading} | Karuna Communitas`;
   }
 
+  if (document.body.classList.contains("kc-page-integration-circles")) {
+    return "Integration Circles | Karuna Communitas";
+  }
+
   if (document.body.classList.contains("kc-page-resources")) {
     return "Resources | Preparation, Integration, and Grounding Support";
   }
@@ -313,6 +322,7 @@ function getSeoDescription(path) {
     "/team": "Meet the team behind Karuna Communitas and our commitment to compassionate, ethical psychedelic support.",
     "/practitioners": "Browse Karuna Communitas practitioners offering preparation, integration, trauma-informed support, and related therapeutic care.",
     "/articles": "Read articles from the Karuna Communitas network on healing, community, integration, and psychedelic support.",
+    "/integration-circles": "Join Karuna Communitas integration circles for reflection, creative practice, and community. Explore upcoming gatherings and book on Luma.",
     "/resources": "Explore practical resources for psychedelic preparation, integration, grounding, and supportive self-reflection.",
     "/resources/preparation-tips": "Practical preparation tips to help you approach psychedelic experiences with intention, safety, and support.",
     "/resources/integration-tips": "Helpful integration guidance for making sense of psychedelic experiences and bringing insight into daily life.",
@@ -627,6 +637,7 @@ function buildSiteShell({ currentPath, shellClass = "", mainContent }) {
       <div class="kc-site-footer__links">
         <a href="/about/">About</a>
         <a href="/practitioners/">Practitioners</a>
+        <a href="/integration-circles/">Integration Circles</a>
         <a href="/resources/">Resources</a>
         <a href="/articles/">Articles</a>
         <a href="/contact/">Contact</a>
@@ -656,6 +667,7 @@ function getPrimaryNavMarkup(currentPath) {
     { href: "/about/", label: "About" },
     { href: "/team/", label: "Team" },
     { href: "/practitioners/", label: "Practitioners" },
+    { href: "/integration-circles/", label: "Integration Circles" },
     { href: "/resources/", label: "Resources" },
     { href: "/articles/", label: "Articles" },
     { href: "/store/", label: "Store" },
@@ -896,6 +908,10 @@ function renderHomePage() {
             <h3>Meet practitioners</h3>
             <p>Browse therapists and guides offering grounded, integrative support.</p>
           </a>
+          <a class="kc-path-card" href="/integration-circles/">
+            <h3>Join an integration circle</h3>
+            <p>Explore reflection, creative practice, and connection in community. Find your next gathering.</p>
+          </a>
           <a class="kc-path-card" href="/articles/">
             <h3>Read articles</h3>
             <p>Explore writing on healing, community, and accessible psychedelic care.</p>
@@ -1062,6 +1078,32 @@ function renderArticlesPage() {
   replaceWithShell(shell, "kc-articles-rebuilt");
 }
 
+function renderIntegrationCirclesPage() {
+  const content = document.querySelector("#circle-content");
+  if (!content) return;
+  const shell = buildSiteShell({
+    currentPath: "/integration-circles",
+    shellClass: "kc-circles-shell",
+    mainContent: content.innerHTML,
+  });
+  const upcoming = shell.querySelector("#upcoming-circle-list");
+  const past = shell.querySelector("#past-circle-list");
+  // End times include an explicit offset, so expiry works in every visitor's time zone.
+  const events = Array.from(upcoming.querySelectorAll("[data-event-end]"));
+  events.sort((a, b) => Date.parse(a.dataset.eventStart) - Date.parse(b.dataset.eventStart));
+  events.forEach((event) => {
+    if (Date.parse(event.dataset.eventEnd) <= Date.now()) {
+      event.querySelector(".kc-circle-booking").textContent = "View past event on Luma";
+      past.prepend(event);
+    } else {
+      upcoming.appendChild(event);
+    }
+  });
+  shell.querySelector("#circle-empty").hidden = upcoming.children.length > 0;
+  shell.querySelector("#past-circles").hidden = past.children.length === 0;
+  replaceWithShell(shell, "kc-circles-rebuilt");
+}
+
 function renderResourcesPage() {
   if (document.querySelector(".kc-resources-shell")) {
     return;
@@ -1098,9 +1140,11 @@ function renderResourcesPage() {
       <section class="kc-page-section">
         <div class="kc-page-section__intro">
           <p class="kc-eyebrow">Support</p>
-          <h2>Looking for personal support?</h2>
+          <h2>Find support in community or one to one.</h2>
+          <p>Our integration circles offer opportunities for reflection, creative practice, and connection with others.</p>
           <p>If you would like one-to-one preparation or integration support, you can explore practitioners in the wider Karuna Communitas network.</p>
           <div class="kc-inline-actions">
+            <a class="kc-home-button" href="/integration-circles/">Explore integration circles</a>
             <a class="kc-home-button kc-home-button--solid" href="/practitioners/">Find a practitioner</a>
           </div>
         </div>
@@ -1282,6 +1326,8 @@ function renderIntegrationTipsPage() {
         <div class="kc-page-section__intro">
           <p class="kc-eyebrow">Support</p>
           <h2>You do not have to make sense of everything alone.</h2>
+          <p>Join an integration circle to explore reflection and creative practice in community.</p>
+          <div class="kc-inline-actions"><a class="kc-home-button" href="/integration-circles/">Explore integration circles</a></div>
           <p>If you are looking for grounded one-to-one support, the Karuna Communitas practitioner network may be a good next step.</p>
           <div class="kc-inline-actions">
             <a class="kc-home-button kc-home-button--solid" href="/practitioners/">Find a practitioner</a>
