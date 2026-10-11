@@ -16,6 +16,12 @@ This repository contains a static GitHub Pages-friendly mirror of the current si
 - Styling and content assets are now localized for static GitHub Pages deployment.
 - Forms, cart, and commerce flows may not fully function on GitHub Pages because there is no backend on a static host.
 
+## Printing
+
+All content pages load `/print.css` with `media="print"`. Use the browser's Print command to print or save a PDF. The stylesheet supports A4 and US Letter with 16 mm margins, removes navigation and forms, uses black text on white, and includes external link destinations. Long articles flow across pages; images are scaled to fit.
+
+When adding a page, include `<link rel="stylesheet" href="/print.css" media="print">` after the screen stylesheet. Check print preview for long text, images, and page breaks as well as the normal screen layout.
+
 ## Publish on GitHub Pages
 
 1. Push this repository to GitHub.

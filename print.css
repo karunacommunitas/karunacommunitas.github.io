@@ -1,0 +1,222 @@
+/* Loaded after the screen theme; also safe to include without media="print". */
+@media print {
+  @page {
+    size: auto;
+    margin: 16mm;
+  }
+
+  :root {
+    --kc-width: 100%;
+    --kc-width-narrow: 100%;
+  }
+
+  *,
+  *::before,
+  *::after {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html,
+  body {
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  body::before,
+  body::after,
+  .kc-home-hero__content::before,
+  body :is(
+    nav,
+    .header-nav,
+    .header-burger,
+    .header-menu,
+    .header-actions,
+    .header-skip-link,
+    .kc-site-footer,
+    #footer-sections,
+    .kc-home-actions,
+    .kc-inline-actions,
+    .kc-pagination-grid,
+    .item-pagination,
+    .kc-home-contact__form,
+    form,
+    button,
+    iframe,
+    video,
+    audio,
+    [hidden]
+  ) {
+    display: none !important;
+  }
+
+  /* Block flow lets long articles and biographies break naturally across pages. */
+  #siteWrapper,
+  #page,
+  .kc-home-shell,
+  .kc-home-main,
+  .kc-home-main :is(section, article, aside, div),
+  .page-section,
+  .content-wrapper,
+  .content,
+  .fluid-engine,
+  .sqs-layout,
+  .sqs-layout .row,
+  .sqs-layout [class*="sqs-col"] {
+    display: block !important;
+    position: static !important;
+    float: none !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    transform: none !important;
+  }
+
+  .kc-site-header,
+  #header {
+    position: static !important;
+    margin: 0 0 6mm !important;
+    padding: 0 0 3mm !important;
+    border: 0 !important;
+    border-bottom: 1px solid #888 !important;
+    border-radius: 0 !important;
+  }
+
+  .kc-site-header__inner {
+    display: block !important;
+  }
+
+  .kc-site-brand__logo {
+    max-height: 18mm !important;
+    margin: 0 !important;
+  }
+
+  h1,
+  .kc-home-hero h1,
+  .blog-title,
+  .product-title {
+    font-size: 25pt !important;
+  }
+
+  h2 { font-size: 18pt !important; }
+  h3 { font-size: 14pt !important; }
+  h4, h5, h6 { font-size: 12pt !important; }
+
+  h1, h2, h3, h4, h5, h6 {
+    max-width: none !important;
+    font-family: Georgia, serif !important;
+    line-height: 1.2 !important;
+    letter-spacing: normal !important;
+    margin: 5mm 0 2mm !important;
+    break-after: avoid-page;
+    break-inside: avoid;
+  }
+
+  p, li, dt, dd, blockquote,
+  .kc-rich-copy p, .kc-rich-copy li {
+    font-size: 11pt !important;
+    line-height: 1.45 !important;
+    orphans: 3;
+    widows: 3;
+  }
+
+  p, blockquote { margin: 0 0 3mm !important; }
+  ul, ol { margin: 2mm 0 4mm; padding-left: 6mm; }
+  li { margin-bottom: 1.5mm; }
+  .kc-leaf-list { list-style: disc !important; }
+  .kc-leaf-list li { padding-left: 0 !important; }
+  .kc-leaf-list li::before { display: none !important; }
+
+  .kc-eyebrow,
+  .kc-home-kicker,
+  .kc-detail-meta,
+  .kc-article-meta {
+    font-size: 9pt !important;
+    letter-spacing: normal !important;
+  }
+
+  .kc-home-main > section,
+  .kc-home-main :is(.kc-value-card, .kc-article-card, .kc-profile-card,
+    .kc-practitioner-card, .kc-store-card, .kc-circle-event, .kc-path-card) {
+    margin-bottom: 6mm !important;
+  }
+
+  .kc-path-card {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+
+  /* Keep short cards together, but never keep a whole article on one sheet. */
+  .kc-value-card, .kc-article-card, .kc-profile-card,
+  .kc-practitioner-card, .kc-store-card, .kc-circle-event, .kc-path-card,
+  figure, img, tr {
+    break-inside: avoid;
+  }
+
+  img {
+    position: static !important;
+    display: block;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 65mm !important;
+    object-fit: contain !important;
+    margin: 3mm 0 !important;
+  }
+
+  .kc-profile-card img,
+  .kc-practitioner-card img {
+    max-height: 30mm !important;
+  }
+
+  a {
+    text-decoration: underline !important;
+    overflow-wrap: anywhere;
+  }
+
+  /* External references remain usable on paper without expanding every menu link. */
+  main a[href^="http"]::after,
+  .kc-rich-copy a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font: 9pt Arial, sans-serif;
+    overflow-wrap: anywhere;
+  }
+
+  .kc-home-button,
+  .kc-chip {
+    display: inline !important;
+    padding: 0 !important;
+    margin-right: 2mm;
+    border: 0 !important;
+    white-space: normal !important;
+    letter-spacing: normal !important;
+    font-size: 10pt !important;
+  }
+
+  .kc-circle-date strong { font-size: 18pt !important; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 2mm; border: 1px solid #888; overflow-wrap: anywhere; }
+  thead { display: table-header-group; }
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+}
