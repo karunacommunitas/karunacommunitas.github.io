@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ["/resources/preparation-tips", "preparation-tips"],
     ["/resources/integration-tips", "integration-tips"],
     ["/resources/grounding-exercises", "grounding-exercises"],
+    ["/resources/facilitator-vetting-checklist", "facilitator-vetting-checklist"],
     ["/team", "team"],
     ["/practitioners", "practitioners"],
     ["/contact", "contact"],
@@ -108,6 +109,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (body.classList.contains("kc-page-resources")) {
     renderResourcesPage();
+  }
+
+  if (body.classList.contains("kc-page-facilitator-vetting-checklist")) {
+    renderFacilitatorVettingPage();
   }
 
   if (body.classList.contains("kc-page-preparation-tips")) {
@@ -326,6 +331,7 @@ function getSeoDescription(path) {
     "/resources": "Explore practical resources for psychedelic preparation, integration, grounding, and supportive self-reflection.",
     "/resources/preparation-tips": "Practical preparation tips to help you approach psychedelic experiences with intention, safety, and support.",
     "/resources/integration-tips": "Helpful integration guidance for making sense of psychedelic experiences and bringing insight into daily life.",
+    "/resources/facilitator-vetting-checklist": "Questions, warning signs, and ethical boundaries to consider when choosing a psychedelic facilitator or retreat.",
     "/resources/grounding-exercises": "Grounding exercises and simple practices to support nervous system regulation and post-experience integration.",
     "/contact": "Contact Karuna Communitas to ask questions, explore collaboration, or connect with our community.",
     "/store": "Browse simple Karuna Communitas offerings that help support the wider work.",
@@ -1123,6 +1129,10 @@ function renderResourcesPage() {
       })}
       <section class="kc-page-section">
         <div class="kc-home-path-grid">
+          <a class="kc-path-card" href="/resources/facilitator-vetting-checklist/">
+            <h2>Facilitator Vetting Checklist</h2>
+            <p>Questions to ask, warning signs to recognise, and boundaries to consider when choosing a psychedelic facilitator or retreat.</p>
+          </a>
           <a class="kc-path-card" href="/resources/preparation-tips/">
             <h2>Preparation Tips</h2>
             <p>Support for intention-setting, practical planning, emotional honesty, and creating the conditions for safety.</p>
@@ -1153,6 +1163,20 @@ function renderResourcesPage() {
   });
 
   replaceWithShell(shell, "kc-resources-rebuilt");
+}
+
+function renderFacilitatorVettingPage() {
+  const content = document.querySelector("#kc-vetting-content");
+  if (!content || document.querySelector(".kc-vetting-shell")) {
+    return;
+  }
+
+  const shell = buildSiteShell({
+    currentPath: "/resources",
+    shellClass: "kc-vetting-shell",
+    mainContent: content.innerHTML,
+  });
+  replaceWithShell(shell, "kc-vetting-rebuilt");
 }
 
 function renderPreparationTipsPage() {
