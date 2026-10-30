@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ["/articles", "articles"],
     ["/resources", "resources"],
     ["/integration-circles", "integration-circles"],
+    ["/peer-support-group", "peer-support-group"],
     ["/resources/preparation-tips", "preparation-tips"],
     ["/resources/integration-tips", "integration-tips"],
     ["/resources/grounding-exercises", "grounding-exercises"],
@@ -105,6 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (body.classList.contains("kc-page-integration-circles")) {
     renderIntegrationCirclesPage();
+  }
+
+  if (body.classList.contains("kc-page-peer-support-group")) {
+    renderPeerSupportGroupPage();
   }
 
   if (body.classList.contains("kc-page-resources")) {
@@ -287,6 +292,10 @@ function getSeoTitle(path) {
     return "Integration Circles | Karuna Communitas";
   }
 
+  if (document.body.classList.contains("kc-page-peer-support-group")) {
+    return "Peer Support Group | Karuna Communitas";
+  }
+
   if (document.body.classList.contains("kc-page-resources")) {
     return "Resources | Preparation, Integration, and Grounding Support";
   }
@@ -328,6 +337,7 @@ function getSeoDescription(path) {
     "/practitioners": "Browse Karuna Communitas practitioners offering preparation, integration, trauma-informed support, and related therapeutic care.",
     "/articles": "Read articles from the Karuna Communitas network on healing, community, integration, and psychedelic support.",
     "/integration-circles": "Join Karuna Communitas integration circles for reflection, creative practice, and community. Explore upcoming gatherings and book on Luma.",
+    "/peer-support-group": "Free online peer support every six weeks for people interested in psychedelic space holding, preparation and integration practice. Email Kate to join.",
     "/resources": "Explore practical resources for psychedelic preparation, integration, grounding, and supportive self-reflection.",
     "/resources/preparation-tips": "Practical preparation tips to help you approach psychedelic experiences with intention, safety, and support.",
     "/resources/integration-tips": "Helpful integration guidance for making sense of psychedelic experiences and bringing insight into daily life.",
@@ -644,6 +654,7 @@ function buildSiteShell({ currentPath, shellClass = "", mainContent }) {
         <a href="/about/">About</a>
         <a href="/practitioners/">Practitioners</a>
         <a href="/integration-circles/">Integration Circles</a>
+        <a href="/peer-support-group/">Peer Support Group</a>
         <a href="/resources/">Resources</a>
         <a href="/articles/">Articles</a>
         <a href="/contact/">Contact</a>
@@ -918,6 +929,11 @@ function renderHomePage() {
             <h3>Join an integration circle</h3>
             <p>Explore reflection, creative practice, and connection in community. Find your next gathering.</p>
           </a>
+          <a class="kc-path-card" href="/peer-support-group/">
+            <h3>Join our Peer Support Group</h3>
+            <p>Free online gatherings every six weeks to share questions, reflect on practice and support one another in the psychedelic space. You don’t need to be currently working as a therapist or space holder.</p>
+            <span class="kc-text-link">Find out more →</span>
+          </a>
           <a class="kc-path-card" href="/articles/">
             <h3>Read articles</h3>
             <p>Explore writing on healing, community, and accessible psychedelic care.</p>
@@ -1082,6 +1098,17 @@ function renderArticlesPage() {
   });
 
   replaceWithShell(shell, "kc-articles-rebuilt");
+}
+
+function renderPeerSupportGroupPage() {
+  const content = document.querySelector("#peer-support-content");
+  if (!content) return;
+  const shell = buildSiteShell({
+    currentPath: "/peer-support-group",
+    shellClass: "kc-peer-support-shell",
+    mainContent: content.innerHTML,
+  });
+  replaceWithShell(shell, "kc-peer-support-rebuilt");
 }
 
 function renderIntegrationCirclesPage() {
@@ -1531,6 +1558,16 @@ function renderPractitionersPage() {
       <section class="kc-page-section">
         <div class="kc-practitioner-grid">
           ${cards}
+        </div>
+      </section>
+      <section class="kc-page-section kc-page-section--cta" aria-labelledby="peer-support-title">
+        <div class="kc-page-section__intro">
+          <p class="kc-eyebrow">Community of practice</p>
+          <h2 id="peer-support-title">Support for those who support others.</h2>
+          <p>Our free online Peer Support Group meets every six weeks to discuss space holding, preparation and integration practice. Occasional and regular attendance are welcome, and you don’t need to be currently working as a therapist or space holder.</p>
+        </div>
+        <div class="kc-inline-actions">
+          <a class="kc-home-button kc-home-button--solid" href="/peer-support-group/">Explore the Peer Support Group</a>
         </div>
       </section>
     `,
