@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ["/about", "about"],
     ["/articles", "articles"],
     ["/resources", "resources"],
+    ["/resources/community-readings", "community-readings"],
     ["/integration-circles", "integration-circles"],
     ["/peer-support-group", "peer-support-group"],
     ["/resources/preparation-tips", "preparation-tips"],
@@ -110,6 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (body.classList.contains("kc-page-peer-support-group")) {
     renderPeerSupportGroupPage();
+  }
+
+  if (body.classList.contains("kc-page-community-readings")) {
+    renderCommunityReadingsPage();
   }
 
   if (body.classList.contains("kc-page-resources")) {
@@ -1156,6 +1161,10 @@ function renderResourcesPage() {
       })}
       <section class="kc-page-section">
         <div class="kc-home-path-grid">
+          <a class="kc-path-card" href="/resources/community-readings/">
+            <h2>Community Readings</h2>
+            <p>Books and other readings recommended by our community, with reflections on why they matter.</p>
+          </a>
           <a class="kc-path-card" href="/resources/facilitator-vetting-checklist/">
             <h2>Facilitator Vetting Checklist</h2>
             <p>Questions to ask, warning signs to recognise, and boundaries to consider when choosing a psychedelic facilitator or retreat.</p>
@@ -1190,6 +1199,17 @@ function renderResourcesPage() {
   });
 
   replaceWithShell(shell, "kc-resources-rebuilt");
+}
+
+function renderCommunityReadingsPage() {
+  const content = document.querySelector("#kc-readings-content");
+  if (!content || document.querySelector(".kc-readings-shell")) return;
+  const shell = buildSiteShell({
+    currentPath: "/resources",
+    shellClass: "kc-readings-shell",
+    mainContent: content.innerHTML,
+  });
+  replaceWithShell(shell, "kc-readings-rebuilt");
 }
 
 function renderFacilitatorVettingPage() {

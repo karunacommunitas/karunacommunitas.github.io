@@ -1542,6 +1542,17 @@ body.kc-home-rebuilt::before {
   }
 }
 
+.kc-readings-shell [hidden] { display: none !important; }
+.kc-readings-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: 1rem; }
+.kc-reading-card { min-width: 0; overflow-wrap: anywhere; }
+.kc-reading-card h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+.kc-reading-card h3 { font-size: 1rem; margin-top: 1.5rem; }
+.kc-reading-author { color: var(--kc-ink-soft); }
+.kc-reading-genres { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; }
+.kc-reading-genres li { padding: 0.25rem 0.6rem; border-radius: 1rem; background: rgba(125, 125, 97, 0.12); font-size: 0.85rem; }
+.kc-reading-description { white-space: pre-line; }
+@media print { .kc-readings-list { display: block; } .kc-reading-card { margin-bottom: 1rem; } #kc-readings-retry { display: none; } }
+
 /* Integration circles: chronological event cards, sharing the site's warm palette. */
 .kc-circles-shell [hidden] { display: none !important; }
 .kc-circles-shell .kc-page-hero { gap: 0.8rem; }

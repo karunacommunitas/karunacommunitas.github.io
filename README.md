@@ -32,3 +32,11 @@ When adding a page, include `<link rel="stylesheet" href="/print.css" media="pri
 
 
 Change
+
+## Community readings
+
+`/resources/community-readings/` loads the published Google Sheet in `community-readings.js` on each visit. No rebuild or website deployment is needed for reading-list edits after the initial page deployment; Google's publication cache can delay updates by a few minutes.
+
+Keep the published tab's header row as `Title`, `Author`, `Link`, `Genres`, and `Why we recommend it`. Use one recommendation per row, comma-separated genres, and a full HTTP or HTTPS URL in `Link`. Blank titles are skipped; invalid links are omitted. Cell text is displayed as text, including line breaks in recommendations. Publish only content intended for public viewing.
+
+The page shows a retry option when the sheet cannot be loaded. If the published sheet or tab is replaced, update `KC_READINGS_CSV_URL` and the no-JavaScript reading-list link in the page.
